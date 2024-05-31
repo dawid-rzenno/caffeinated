@@ -1,16 +1,34 @@
 import { Routes } from "@angular/router";
-import { DishComponent } from "./dish/dish.component";
-import { dishResolver } from "./dish.resolver";
+import { MealComponent } from "./meal/meal.component";
+import { mealDetailsResolver } from "./meal/meal-details.resolver";
+import { DietComponent } from "./diet/diet.component";
+import { dietDetailsResolver } from "./diet/diet-details.resolver";
+import { shoppingListResolver } from "./shopping-list/shopping-list.resolver";
+import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
 
 export const routes: Routes = [
   {
-    path: 'dish/:id',
-    component: DishComponent,
-    data: {
-      title: 'Dish details',
-    },
+    path: 'meal/:id',
+    component: MealComponent,
     resolve: {
-      dish: dishResolver
-    }
+      meal: mealDetailsResolver
+    },
+    title: 'Meal Details | Caffeinated Fitness',
   },
+  {
+    path: 'diet/:id',
+    component: DietComponent,
+    resolve: {
+      diet: dietDetailsResolver
+    },
+    title: 'Diet Details | Caffeinated Fitness',
+  },
+  {
+    path: 'shopping-list/:id',
+    component: ShoppingListComponent,
+    resolve: {
+      shoppingList: shoppingListResolver
+    },
+    title: 'Shopping List | Caffeinated Fitness',
+  }
 ]

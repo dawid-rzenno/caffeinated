@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ElementsComponentAbstract } from "../elements-component.abstract";
 
 @Component({
   selector: 'app-shopping-lists',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './shopping-lists.component.html',
   styleUrl: './shopping-lists.component.scss'
 })
-export class ShoppingListsComponent {
+export class ShoppingListsComponent extends ElementsComponentAbstract {
 
 }

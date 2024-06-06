@@ -20,10 +20,9 @@ import { DetailsComponentAbstract } from "../details-component.abstract";
   templateUrl: './diet-details.component.html',
   styleUrl: './diet-details.component.scss'
 })
-export class DietDetailsComponent extends DetailsComponentAbstract {
-  diet: DietDetails = this.route.snapshot.data['diet'];
+export class DietDetailsComponent extends DetailsComponentAbstract<DietDetails> {
 
-  constructor(private route: ActivatedRoute) {
-    super();
+  constructor(route: ActivatedRoute) {
+    super(route);
   }
 }

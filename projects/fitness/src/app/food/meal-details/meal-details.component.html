@@ -1,10 +1,10 @@
 <p>meal works!</p>
 
-<h1>{{meal.name}} - {{price}} zł</h1>
-<p>{{meal.description}}</p>
+<h1>{{details.name}} - {{price}} zł</h1>
+<p>{{details.description}}</p>
 <span>Calories: {{calories}}, proteins: {{proteins}}, carbohydrates: {{carbohydrates}}, fats: {{fats}}</span>
 <ul>
-  <li *ngFor="let ingredient of meal.ingredients">
+  <li *ngFor="let ingredient of details.ingredients">
     {{ingredient.count ? 'x' + ingredient.count : ''}} {{ingredient.name}} {{ingredient.amount ? '(' + ingredient.amount + 'g)' : ''}},
     calories: {{ingredient.calories | nutritionPer100g : ingredient.amount}},
     proteins: {{ingredient.proteins | nutritionPer100g : ingredient.amount}},

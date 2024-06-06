@@ -18,22 +18,20 @@ import { DetailsComponentAbstract } from "../details-component.abstract";
   styleUrl: './meal-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MealDetailsComponent extends DetailsComponentAbstract {
-  meal: MealDetails = this.route.snapshot.data['meal'];
-
+export class MealDetailsComponent extends DetailsComponentAbstract<MealDetails> {
   calories: number = this.calculateNutrientAmounts('calories');
   proteins: number = this.calculateNutrientAmounts('proteins');
   carbohydrates: number = this.calculateNutrientAmounts('carbohydrates');
   fats: number = this.calculateNutrientAmounts('fats');
   price: number = this.calculateNutrientAmounts('price');
 
-  constructor(private route: ActivatedRoute) {
-    super();
+  constructor(route: ActivatedRoute) {
+    super(route);
   }
 
   calculateNutrientAmounts(category: keyof Nutrients | 'price'): number {
     return Math.round(
-      this.meal.ingredients.reduce((sum: number, ingredient: IngredientDetails) => sum + this.nutrientPer100g(ingredient[category], ingredient.amount), 0) * 1000
+      this.details.ingredients.reduce((sum: number, ingredient: IngredientDetails) => sum + this.nutrientPer100g(ingredient[category], ingredient.amount), 0) * 1000
     ) / 1000
   }
 

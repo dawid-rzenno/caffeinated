@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormComponentAbstract } from "../form-component.abstract";
 
 @Component({
   selector: 'app-ingredient-form',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './ingredient-form.component.html',
   styleUrl: './ingredient-form.component.scss'
 })
-export class IngredientFormComponent {
+export class IngredientFormComponent extends FormComponentAbstract {
 
 }

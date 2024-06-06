@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormComponentAbstract } from "../form-component.abstract";
 
 @Component({
   selector: 'app-meal-form',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
   templateUrl: './meal-form.component.html',
   styleUrl: './meal-form.component.scss'
 })
-export class MealFormComponent {
+export class MealFormComponent extends FormComponentAbstract {
 
 }

@@ -1,4 +1,4 @@
-import { IngredientDetails } from "./ingredient";
+import { IngredientDetails } from "../ingredient-details/ingredient";
 
 export type Meal = {
   id: string;

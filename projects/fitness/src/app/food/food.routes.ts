@@ -1,34 +1,38 @@
 import { Routes } from "@angular/router";
-import { MealComponent } from "./meal/meal.component";
-import { mealDetailsResolver } from "./meal/meal-details.resolver";
-import { DietComponent } from "./diet/diet.component";
-import { dietDetailsResolver } from "./diet/diet-details.resolver";
-import { shoppingListResolver } from "./shopping-list/shopping-list.resolver";
-import { ShoppingListComponent } from "./shopping-list/shopping-list.component";
+import { MealDetailsComponent } from "./meal-details/meal-details.component";
+import { mealDetailsResolver } from "./meal-details/meal-details.resolver";
+import { DietDetailsComponent } from "./diet-details/diet-details.component";
+import { dietDetailsResolver } from "./diet-details/diet-details.resolver";
+import { shoppingListDetailsResolver } from "./shopping-list-details/shopping-list-details.resolver";
+import { ShoppingListDetailsComponent } from "./shopping-list-details/shopping-list-details.component";
+
+export function createTitle(pathTitle: string): string {
+  return `${pathTitle} | Caffeinated Fitness`;
+}
 
 export const routes: Routes = [
   {
     path: 'meal/:id',
-    component: MealComponent,
+    component: MealDetailsComponent,
     resolve: {
       meal: mealDetailsResolver
     },
-    title: 'Meal Details | Caffeinated Fitness',
+    title: createTitle('Meal Details'),
   },
   {
     path: 'diet/:id',
-    component: DietComponent,
+    component: DietDetailsComponent,
     resolve: {
       diet: dietDetailsResolver
     },
-    title: 'Diet Details | Caffeinated Fitness',
+    title: createTitle('Diet Details Details'),
   },
   {
     path: 'shopping-list/:id',
-    component: ShoppingListComponent,
+    component: ShoppingListDetailsComponent,
     resolve: {
-      shoppingList: shoppingListResolver
+      shoppingList: shoppingListDetailsResolver
     },
-    title: 'Shopping List | Caffeinated Fitness',
+    title: createTitle('Shopping List Details'),
   }
 ]

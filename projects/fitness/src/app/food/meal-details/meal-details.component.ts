@@ -2,22 +2,23 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MealDetails } from "./meal";
 import { JsonPipe, NgForOf } from "@angular/common";
-import { IngredientDetails, Nutrients } from "./ingredient";
+import { IngredientDetails, Nutrients } from "../ingredient-details/ingredient";
 import { NutritionPer100gPipe } from "./nutrition-per100g.pipe";
+import { DetailsComponentAbstract } from "../details-component.abstract";
 
 @Component({
-  selector: 'app-meal',
+  selector: 'app-meal-details',
   standalone: true,
   imports: [
     JsonPipe,
     NgForOf,
     NutritionPer100gPipe
   ],
-  templateUrl: './meal.component.html',
-  styleUrl: './meal.component.scss',
+  templateUrl: './meal-details.component.html',
+  styleUrl: './meal-details.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MealComponent {
+export class MealDetailsComponent extends DetailsComponentAbstract {
   meal: MealDetails = this.route.snapshot.data['meal'];
 
   calories: number = this.calculateNutrientAmounts('calories');
@@ -26,7 +27,9 @@ export class MealComponent {
   fats: number = this.calculateNutrientAmounts('fats');
   price: number = this.calculateNutrientAmounts('price');
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    super();
+  }
 
   calculateNutrientAmounts(category: keyof Nutrients | 'price'): number {
     return Math.round(

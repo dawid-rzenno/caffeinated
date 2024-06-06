@@ -1,7 +1,7 @@
 import { ResolveFn } from '@angular/router';
 import { inject } from "@angular/core";
 import { FoodService } from "../food.service";
-import { Diet, DietDetails } from "./diet";
+import { DietDetails } from "./diet";
 
 export const dietDetailsResolver: ResolveFn<DietDetails | false> = (route) => {
 

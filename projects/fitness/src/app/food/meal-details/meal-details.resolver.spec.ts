@@ -4,7 +4,7 @@ import { ResolveFn } from '@angular/router';
 import { mealDetailsResolver } from './meal-details.resolver';
 import { Meal } from "./meal";
 
-describe('mealResolver', () => {
+describe('mealDetailsResolver', () => {
   const executeResolver: ResolveFn<Meal | false> = (...resolverParameters) =>
       TestBed.runInInjectionContext(() => mealDetailsResolver(...resolverParameters));
 

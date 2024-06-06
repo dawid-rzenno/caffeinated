@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { Observable } from "rxjs";
-import { Meal, MealDetails } from "./meal/meal";
-import { Diet, DietDetails } from "./diet/diet";
-import { ShoppingList, ShoppingListDetails } from "./shopping-list/shopping-list";
+import { Meal, MealDetails } from "./meal-details/meal";
+import { Diet, DietDetails } from "./diet-details/diet";
+import { ShoppingList, ShoppingListDetails } from "./shopping-list-details/shopping-list";
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +23,8 @@ export class FoodService {
     return this.http.get<Meal[]>(`${this.endpointUrl}/meal`)
   }
 
-  createMeal(body: MealDetails): Observable<MealDetails> {
-    return this.http.post<MealDetails>(`${this.endpointUrl}/meal`, body)
+  createMeal(details: MealDetails): Observable<MealDetails> {
+    return this.http.post<MealDetails>(`${this.endpointUrl}/meal`, details)
   }
 
   getDiet(id: string): Observable<DietDetails> {
@@ -35,8 +35,8 @@ export class FoodService {
     return this.http.get<Diet[]>(`${this.endpointUrl}/diet`)
   }
 
-  createDiets(body: DietDetails): Observable<DietDetails> {
-    return this.http.post<DietDetails>(`${this.endpointUrl}/diet`, body)
+  createDiets(details: DietDetails): Observable<DietDetails> {
+    return this.http.post<DietDetails>(`${this.endpointUrl}/diet`, details)
   }
 
   getShoppingList(id: string): Observable<ShoppingListDetails> {
@@ -47,7 +47,7 @@ export class FoodService {
     return this.http.get<ShoppingList[]>(`${this.endpointUrl}/shopping-list`)
   }
 
-  createShoppingList(body: ShoppingListDetails): Observable<ShoppingListDetails> {
-    return this.http.post<ShoppingListDetails>(`${this.endpointUrl}/shopping-list`, body)
+  createShoppingList(details: ShoppingListDetails): Observable<ShoppingListDetails> {
+    return this.http.post<ShoppingListDetails>(`${this.endpointUrl}/shopping-list`, details)
   }
 }

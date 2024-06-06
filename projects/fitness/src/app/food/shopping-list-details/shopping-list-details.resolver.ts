@@ -3,7 +3,7 @@ import { inject } from "@angular/core";
 import { FoodService } from "../food.service";
 import { ShoppingList } from "./shopping-list";
 
-export const shoppingListResolver: ResolveFn<ShoppingList | false> = (route) => {
+export const shoppingListDetailsResolver: ResolveFn<ShoppingList | false> = (route) => {
 
   const id: string | null = route.paramMap.get('id');
 

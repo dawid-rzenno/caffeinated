@@ -5,9 +5,10 @@ import { NgForOf } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatCheckbox } from "@angular/material/checkbox";
 import { MatButton } from "@angular/material/button";
+import { DetailsComponentAbstract } from "../details-component.abstract";
 
 @Component({
-  selector: 'app-diet',
+  selector: 'app-diet-details',
   standalone: true,
   imports: [
     NgForOf,
@@ -16,11 +17,13 @@ import { MatButton } from "@angular/material/button";
     MatCheckbox,
     MatButton
   ],
-  templateUrl: './diet.component.html',
-  styleUrl: './diet.component.scss'
+  templateUrl: './diet-details.component.html',
+  styleUrl: './diet-details.component.scss'
 })
-export class DietComponent {
+export class DietDetailsComponent extends DetailsComponentAbstract {
   diet: DietDetails = this.route.snapshot.data['diet'];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {
+    super();
+  }
 }

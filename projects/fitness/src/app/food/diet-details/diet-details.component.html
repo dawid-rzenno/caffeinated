@@ -4,5 +4,5 @@
 <p>{{diet.description}}</p>
 <div *ngFor="let meal of diet.meals" style="padding: 0.5rem">
   <button style="margin-right: 1rem" mat-raised-button color="primary">Add to shopping list</button>
-  <a [routerLink]="'/food/meal/' + meal.id">{{meal.name}}</a> - {{meal.description}}
+  <a [routerLink]="'/food/meal-details/' + meal.id">{{meal.name}}</a> - {{meal.description}}
 </div>

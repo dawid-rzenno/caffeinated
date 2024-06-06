@@ -10,7 +10,7 @@ export type DBItem = {
   id: string
 }
 
-export interface ItemsComponentAbstractService<Item extends DBItem> {
+export type ItemsComponentAbstractService<Item extends DBItem> = {
   delete(id: string): Observable<void>;
   getAll(page: number): Observable<Item[]>;
 }

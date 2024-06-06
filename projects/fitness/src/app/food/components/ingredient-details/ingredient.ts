@@ -1,9 +1,10 @@
-export type Ingredient = {
-  id: string;
+import { DBItem } from "../../abstracts/items-component.abstract";
+
+export type Ingredient = DBItem & {
   name: string;
   category: string;
   price: number;
-  count?: number;
+  quantity?: number;
   amount: number;
 }
 

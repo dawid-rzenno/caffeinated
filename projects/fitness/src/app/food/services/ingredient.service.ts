@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { ItemsComponentAbstractService } from "../abstracts/items-component.abstract";
 import { environment } from "../../../environments/environment";
 import { HttpClient } from "@angular/common/http";
 import { Ingredient, IngredientDetails } from "../components/ingredient-details/ingredient";
@@ -8,7 +7,7 @@ import { Ingredient, IngredientDetails } from "../components/ingredient-details/
 @Injectable({
   providedIn: 'root'
 })
-export class IngredientService implements ItemsComponentAbstractService<Ingredient> {
+export class IngredientService {
 
   private readonly endpointUrl: string = `${environment.apiUrl}/food/ingredient`;
 

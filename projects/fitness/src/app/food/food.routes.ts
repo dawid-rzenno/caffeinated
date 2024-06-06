@@ -14,6 +14,7 @@ import { DietFormComponent } from "./components/diet-form/diet-form.component";
 import { DietsComponent } from "./components/diets/diets.component";
 import { ShoppingListsComponent } from "./components/shopping-lists/shopping-lists.component";
 import { ShoppingListFormComponent } from "./components/shopping-list-form/shopping-list-form.component";
+import { MealFormComponent } from "./components/meal-form/meal-form.component";
 
 export function createTitle(pathTitle: string): string {
   return `${pathTitle} | Caffeinated Fitness`;
@@ -60,7 +61,7 @@ export const routes: Routes = [
   },
   {
     path: 'meal',
-    component: IngredientFormComponent,
+    component: MealFormComponent,
     title: createTitle('New Meal'),
   },
   ////////////////////////////////////////////////////////////////

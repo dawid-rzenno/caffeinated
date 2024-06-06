@@ -15,7 +15,7 @@ export const routes: Routes = [
     path: 'meal/:id',
     component: MealDetailsComponent,
     resolve: {
-      meal: mealDetailsResolver
+      details: mealDetailsResolver
     },
     title: createTitle('Meal Details'),
   },
@@ -23,7 +23,7 @@ export const routes: Routes = [
     path: 'diet/:id',
     component: DietDetailsComponent,
     resolve: {
-      diet: dietDetailsResolver
+      details: dietDetailsResolver
     },
     title: createTitle('Diet Details Details'),
   },
@@ -31,7 +31,7 @@ export const routes: Routes = [
     path: 'shopping-list/:id',
     component: ShoppingListDetailsComponent,
     resolve: {
-      shoppingList: shoppingListDetailsResolver
+      details: shoppingListDetailsResolver
     },
     title: createTitle('Shopping List Details'),
   }

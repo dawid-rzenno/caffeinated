@@ -9,10 +9,11 @@ import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { ActivatedRoute } from "@angular/router";
 import { IngredientService } from "../ingredient.service";
-import { IngredientDetails } from "../ingredient";
+import { Ingredient, IngredientDetails } from "../ingredient";
 
 export type IngredientForm = {
   id: FormControl<string>,
+  name: FormControl<string>,
   category: FormControl<string>,
   price: FormControl<number>,
   quantity: FormControl<number>,
@@ -25,6 +26,15 @@ export type IngredientDetailsForm = IngredientForm & {
   carbohydrates: FormControl<number>,
   fats: FormControl<number>
 }
+
+export const createIngredientForm = (ingredient: Ingredient) => new FormGroup<IngredientForm>({
+  id: new FormControl<string>(ingredient.id, {nonNullable: true}),
+  name: new FormControl<string>(ingredient.name, {nonNullable: true}),
+  category: new FormControl<string>(ingredient.category, {nonNullable: true}),
+  price: new FormControl<number>(ingredient.price, {nonNullable: true}),
+  quantity: new FormControl<number>(ingredient.quantity ?? 0, {nonNullable: true}),
+  amount: new FormControl<number>(ingredient.amount, {nonNullable: true})
+});
 
 
 @Component({
@@ -46,6 +56,7 @@ export class IngredientFormComponent extends FormComponentAbstract<IngredientDet
   readonly formGroup: FormGroup<IngredientDetailsForm> = new FormGroup<IngredientDetailsForm>({
     id: new FormControl<string>('', {nonNullable: true}),
     category: new FormControl<string>('', {nonNullable: true}),
+    name: new FormControl<string>('', {nonNullable: true}),
     price: new FormControl<number>(0, {nonNullable: true}),
     quantity: new FormControl<number>(0, {nonNullable: true}),
     amount: new FormControl<number>(0, {nonNullable: true}),
@@ -73,6 +84,4 @@ export class IngredientFormComponent extends FormComponentAbstract<IngredientDet
   constructor(route: ActivatedRoute, service: IngredientService) {
     super(route, service);
   }
-
-
 }

@@ -30,9 +30,10 @@ export class MealDetailsComponent extends DetailsComponentAbstract<MealDetails> 
   }
 
   calculateNutrientAmounts(category: keyof Nutrients | 'price'): number {
-    return Math.round(
-      this.details.ingredients.reduce((sum: number, ingredient: IngredientDetails) => sum + this.nutrientPer100g(ingredient[category], ingredient.amount), 0) * 1000
-    ) / 1000
+    return 0;
+    // return Math.round(
+    //   this.details.ingredients.reduce((sum: number, ingredient: IngredientDetails) => sum + this.nutrientPer100g(ingredient[category], ingredient.amount), 0) * 1000
+    // ) / 1000
   }
 
   nutrientPer100g(value: number, amount: number): number {

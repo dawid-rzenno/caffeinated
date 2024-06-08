@@ -6,9 +6,9 @@
 <ul>
   <li *ngFor="let ingredient of details.ingredients">
     {{ingredient.quantity ? 'x' + ingredient.quantity : ''}} {{ingredient.name}} {{ingredient.amount ? '(' + ingredient.amount + 'g)' : ''}},
-    calories: {{ingredient.calories | nutritionPer100g : ingredient.amount}},
-    proteins: {{ingredient.proteins | nutritionPer100g : ingredient.amount}},
-    carbohydrates: {{ingredient.carbohydrates | nutritionPer100g : ingredient.amount}},
-    fats: {{ingredient.fats | nutritionPer100g : ingredient.amount}}
+<!--    calories: {{ingredient.calories | nutritionPer100g : ingredient.amount}},-->
+<!--    proteins: {{ingredient.proteins | nutritionPer100g : ingredient.amount}},-->
+<!--    carbohydrates: {{ingredient.carbohydrates | nutritionPer100g : ingredient.amount}},-->
+<!--    fats: {{ingredient.fats | nutritionPer100g : ingredient.amount}}-->
   </li>
 </ul>

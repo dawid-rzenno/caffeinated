@@ -1,5 +1,5 @@
 import { DBItem } from "../items-component.abstract";
-import { IngredientDetails } from "../ingredient/ingredient";
+import { Ingredient } from "../ingredient/ingredient";
 
 export type Meal = DBItem & {
   name: string;
@@ -7,6 +7,6 @@ export type Meal = DBItem & {
 }
 
 export type MealDetails = Meal & {
-  ingredients: IngredientDetails[]
+  ingredients: Ingredient[]
 }
 

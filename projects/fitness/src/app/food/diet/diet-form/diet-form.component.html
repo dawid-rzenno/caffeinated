@@ -15,10 +15,29 @@
           <input matInput formControlName="description">
         </mat-form-field>
 
-        <mat-form-field class="form-field">
-          <mat-label>Meals</mat-label>
-          <input matInput>
-        </mat-form-field>
+        <div class="form-fields">
+          <h6>Meals</h6>
+
+          <mat-form-field class="form-field">
+            <mat-label>Search for a meal</mat-label>
+            <input [formControl]="mealSearchFormControl" [matAutocomplete]="auto" matInput>
+            <mat-autocomplete
+              (optionSelected)="onOptionSelected($event)"
+              [displayWith]="optionToNameMapper"
+              #auto="matAutocomplete"
+            >
+              @for (mealOption of mealAutocompleteOptions$ | async; track mealOption.id) {
+                <mat-option [value]="mealOption">{{mealOption.name}}</mat-option>
+              }
+            </mat-autocomplete>
+          </mat-form-field>
+
+          <ul>
+            @for (meal of mealsFormArray.value; track meal.id) {
+              <li>{{meal.id}} | {{meal.name}}</li>
+            }
+          </ul>
+        </div>
       </div>
     </form>
   </mat-card-content>

@@ -9,16 +9,33 @@
           <mat-label>Name</mat-label>
           <input matInput formControlName="name">
         </mat-form-field>
-
         <mat-form-field class="form-field">
           <mat-label>Description</mat-label>
           <input matInput formControlName="description">
         </mat-form-field>
+      </div>
+      <div class="form-fields">
+        <h6>Ingredients</h6>
 
         <mat-form-field class="form-field">
-          <mat-label>Ingredients</mat-label>
-          <input matInput>
+          <mat-label>Search for an ingredient</mat-label>
+          <input [formControl]="ingredientSearchFormControl" [matAutocomplete]="auto" matInput>
+          <mat-autocomplete
+            (optionSelected)="onOptionSelected($event)"
+            [displayWith]="optionToNameMapper"
+            #auto="matAutocomplete"
+          >
+            @for (ingredientOption of ingredientAutocompleteOptions$ | async; track ingredientOption.id) {
+              <mat-option [value]="ingredientOption">{{ingredientOption.name}}</mat-option>
+            }
+          </mat-autocomplete>
         </mat-form-field>
+
+        <ul>
+          @for (ingredient of ingredientsFormArray.value; track ingredient) {
+            <li>{{ingredient.id}} | {{ingredient.name}}</li>
+          }
+        </ul>
       </div>
     </form>
   </mat-card-content>

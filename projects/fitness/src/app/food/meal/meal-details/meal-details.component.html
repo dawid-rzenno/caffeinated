@@ -1,14 +1,19 @@
-<p>meal works!</p>
-
-<h1>{{details.name}} - {{price}} zł</h1>
-<p>{{details.description}}</p>
-<span>Calories: {{calories}}, proteins: {{proteins}}, carbohydrates: {{carbohydrates}}, fats: {{fats}}</span>
-<ul>
-  <li *ngFor="let ingredient of details.ingredients">
-    {{ingredient.quantity ? 'x' + ingredient.quantity : ''}} {{ingredient.name}} {{ingredient.amount ? '(' + ingredient.amount + 'g)' : ''}},
-<!--    calories: {{ingredient.calories | nutritionPer100g : ingredient.amount}},-->
-<!--    proteins: {{ingredient.proteins | nutritionPer100g : ingredient.amount}},-->
-<!--    carbohydrates: {{ingredient.carbohydrates | nutritionPer100g : ingredient.amount}},-->
-<!--    fats: {{ingredient.fats | nutritionPer100g : ingredient.amount}}-->
-  </li>
-</ul>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Meal: {{details.name}}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul>
+      <li> Description: {{details.description}}</li>
+      <li> Ingredients: <br>
+        <ul>
+          @for (ingredient of details.ingredients; track ingredient.id) {
+            <li><a [routerLink]="['/food/ingredient/read', ingredient.id]">{{ ingredient.name }}</a></li>
+          }
+        </ul>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

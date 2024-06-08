@@ -1,10 +1,19 @@
-<p>diet works!</p>
-
-<h1>{{details.name}}</h1>
-<p>{{details.description}}</p>
-<div *ngFor="let meal of details.meals" style="padding: 0.5rem">
-  <button mat-button color="primary">Add to shopping list</button> &nbsp;
-  <a [routerLink]="'/food/meal/' + meal.id">{{meal.name}}</a> - {{meal.description}}
-</div>
-<button mat-button color="primary">Add ingredient</button>
-
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Diet: {{details.name}}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <ul>
+      <li> Description: {{details.description}}</li>
+      <li> Meals: <br>
+        <ul>
+          @for (meal of details.meals; track meal.id) {
+            <li><a [routerLink]="['/food/meal/read', meal.id]">{{ meal.name }}</a></li>
+          }
+        </ul>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

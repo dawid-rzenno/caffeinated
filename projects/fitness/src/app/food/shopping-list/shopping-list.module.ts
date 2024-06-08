@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
-import { foodRoutes } from "./food.routes";
+import { shoppingListRoutes } from "./shopping-list.routes";
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(foodRoutes)
+    RouterModule.forChild(shoppingListRoutes)
   ]
 })
-export class FoodModule { }
+export class ShoppingListModule { }

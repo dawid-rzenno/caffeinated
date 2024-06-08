@@ -23,7 +23,7 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let item">
-          <button mat-button="primary" [routerLink]="['/', 'food', 'diet', item.id]">Edit</button> &nbsp;
+          <button mat-button="primary" [routerLink]="['/food/diet/edit', item.id]">Edit</button> &nbsp;
           <button mat-button (click)="onDeleteClick(item)">Delete</button>
         </td>
       </ng-container>

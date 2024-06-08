@@ -6,6 +6,11 @@
     <form [formGroup]="formGroup">
       <div class="form-fields">
         <mat-form-field class="form-field">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="form-field">
           <mat-label>Category</mat-label>
           <mat-select>
             <mat-option *ngFor="let categoryOption of categoryOptions" [value]="categoryOption">{{ categoryOption }}</mat-option>
@@ -16,7 +21,9 @@
           <mat-label>Price</mat-label>
           <input matInput formControlName="price">
         </mat-form-field>
+      </div>
 
+      <div class="form-fields">
         <mat-form-field class="form-field">
           <mat-label>Quantity</mat-label>
           <input matInput formControlName="quantity">
@@ -26,14 +33,13 @@
           <mat-label>Amount</mat-label>
           <input matInput formControlName="amount">
         </mat-form-field>
-      </div>
 
-      <div class="form-fields">
         <mat-form-field class="form-field">
           <mat-label>Calories</mat-label>
           <input matInput formControlName="calories">
         </mat-form-field>
-
+      </div>
+      <div class="form-fields">
         <mat-form-field class="form-field">
           <mat-label>Proteins</mat-label>
           <input matInput formControlName="proteins">

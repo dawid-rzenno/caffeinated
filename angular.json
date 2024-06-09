@@ -29,14 +29,20 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "projects/fitness/src/assets"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "projects/fitness/src/styles.scss",
               "projects/fitness/public/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/fitness/src/assets"
+              ]
+            }
           },
           "configurations": {
             "production": {

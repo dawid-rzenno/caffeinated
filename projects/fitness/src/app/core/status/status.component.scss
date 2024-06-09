@@ -1,4 +1,4 @@
-@import "src/assets/theme";
+//@import "src/assets/theme";
 
 .content {
   margin-top: 0.5rem;
@@ -10,28 +10,28 @@
 }
 
 .content--failure {
-  background: $failure;
-  border: 1px solid $failure-border;
+  //background: $failure;
+  //border: 1px solid $failure-border;
 
   * {
-    color: $failure-color;
+    //color: $failure-color;
   }
 
   .content__close-button:hover {
-    background: $failure-button--hover;
+    //background: $failure-button--hover;
   }
 }
 
 .content--success {
-  background: $success;
-  border: 1px solid $success-border;
+  //background: $success;
+  //border: 1px solid $success-border;
 
   * {
-    color: $success-color;
+    //color: $success-color;
   }
 
   .content__close-button:hover {
-    background: $success-button--hover;
+    //background: $success-button--hover;
   }
 }
 

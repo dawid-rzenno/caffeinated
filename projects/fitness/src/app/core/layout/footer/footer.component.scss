@@ -1,4 +1,4 @@
-//@import 'src/assets/theme';
+@import 'theme';
 
 .text-content {
   height: 100%;
@@ -6,10 +6,11 @@
   font-size: 0.75rem;
   display: flex;
   align-items: center;
-  //background: $primary;
-  //color: $primary-color;
+  background: $primary;
+  color: $primary-color;
 }
 
 .text-content__link {
-  //color: $primary-link;
+  color: $primary-link;
 }
+

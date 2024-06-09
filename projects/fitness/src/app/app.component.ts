@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { HeaderComponent } from "./core/layout/header/header.component";
+import { MainComponent } from "./core/layout/main/main.component";
+import { FooterComponent } from "./core/layout/footer/footer.component";
+import { AuthModule } from "./core/auth/auth.module";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +11,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   imports: [
     RouterOutlet,
     RouterLink,
+    HeaderComponent,
+    MainComponent,
+    FooterComponent,
+    AuthModule
   ],
   providers: [],
   templateUrl: './app.component.html',

@@ -1,0 +1,21 @@
+@import "core/layout/layout-variables";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  height: $header-height;
+}
+
+.main {
+  height: $main-height;
+  overflow-y: auto;
+}
+
+.footer {
+  height: $footer-height;
+}

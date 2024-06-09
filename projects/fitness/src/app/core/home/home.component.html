@@ -1,0 +1,13 @@
+<div class="welcome-message">
+  <div class="welcome-message__content">
+    <div class="content__icon">
+      <fa-icon [icon]="['fas', 'hand-holding-dollar']"></fa-icon>
+    </div>
+    <h1 class="content__header">Welcome!</h1>
+    <p class="content__description">Caffeinated is an organizer app for private users.</p>
+    <button [routerLink]="['/food/diet/read/all']" color="primary" mat-raised-button type="button">
+      <fa-icon [icon]="['fas', 'plus']" size="xs"></fa-icon>
+      See diets
+    </button>
+  </div>
+</div>

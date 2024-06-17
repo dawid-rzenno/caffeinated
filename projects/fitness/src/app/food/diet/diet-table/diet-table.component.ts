@@ -23,7 +23,7 @@ import { MatDialog } from "@angular/material/dialog";
   styleUrl: './diet-table.component.scss'
 })
 export class DietTableComponent extends TableComponentAbstract<Diet> {
-  @Input() dataSource: Diet[] = [];
+  @Input({ transform: (value: Diet[] | null) => value ?? []}) dataSource: Diet[] = [];
 
   constructor(service: DietService, dialog: MatDialog) {
     super(service, dialog);

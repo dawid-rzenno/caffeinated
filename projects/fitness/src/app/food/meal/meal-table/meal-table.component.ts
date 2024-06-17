@@ -23,7 +23,8 @@ import { MealService } from "../meal.service";
   styleUrl: './meal-table.component.scss'
 })
 export class MealTableComponent extends TableComponentAbstract<Meal> {
-  @Input() dataSource: Meal[] = [];
+  @Input({ transform: (value: Meal[] | null) => value ?? []}) dataSource: Meal[] = [];
+
 
   constructor(service: MealService, dialog: MatDialog) {
     super(service, dialog);

@@ -23,7 +23,7 @@ import { RouterModule } from "@angular/router";
   styleUrl: './ingredient-table.component.scss'
 })
 export class IngredientTableComponent extends TableComponentAbstract<Ingredient> {
-  @Input() dataSource: Ingredient[] = [];
+  @Input({ transform: (value: Ingredient[] | null) => value ?? []}) dataSource: Ingredient[] = [];
 
   override displayedColumns: string[] = ['id', 'name', 'category', 'price', 'actions']
 

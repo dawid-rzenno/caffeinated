@@ -13,7 +13,8 @@ import { createIngredientForm, IngredientForm } from "../../ingredient/ingredien
 import { Ingredient } from "../../ingredient/ingredient";
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { IngredientService } from "../../ingredient/ingredient.service";
-import { Observable } from "rxjs";
+import { map, Observable, startWith } from "rxjs";
+import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingredient-table.component";
 
 export type MealForm = {
   id: FormControl<string>,
@@ -42,13 +43,19 @@ export const createMealForm = (meal: Meal) => new FormGroup<MealForm>({
     MatCardModule,
     MatButtonModule,
     MatAutocompleteModule,
-    AsyncPipe
+    AsyncPipe,
+    IngredientTableComponent
   ],
   templateUrl: './meal-form.component.html',
   styleUrl: './meal-form.component.scss'
 })
 export class MealFormComponent extends FormComponentAbstract<MealDetails> implements OnInit {
   readonly ingredientsFormArray: FormArray<FormGroup<IngredientForm>> = new FormArray<FormGroup<IngredientForm>>([])
+  readonly ingredientTableDataSource$: Observable<Ingredient[]> =
+    this.ingredientsFormArray.valueChanges.pipe(
+      startWith(() => this.ingredientsFormArray.getRawValue()),
+      map(() => this.ingredientsFormArray.getRawValue())
+    ) as Observable<Ingredient[]>;
 
   readonly formGroup: FormGroup<MealDetailsForm> = new FormGroup<MealDetailsForm>({
     id: new FormControl<string>("", {nonNullable: true}),

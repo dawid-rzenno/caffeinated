@@ -23,7 +23,7 @@ import { MatDialog } from "@angular/material/dialog";
   styleUrl: './shopping-list-table.component.scss'
 })
 export class ShoppingListTableComponent extends TableComponentAbstract<ShoppingList> {
-  @Input() dataSource: ShoppingList[] = [];
+  @Input({ transform: (value: ShoppingList[] | null) => value ?? []}) dataSource: ShoppingList[] = [];
 
   constructor(service: ShoppingListService, dialog: MatDialog) {
     super(service, dialog);

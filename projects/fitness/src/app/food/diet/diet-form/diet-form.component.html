@@ -32,11 +32,7 @@
             </mat-autocomplete>
           </mat-form-field>
 
-          <ul>
-            @for (meal of mealsFormArray.value; track meal.id) {
-              <li>{{meal.id}} | {{meal.name}}</li>
-            }
-          </ul>
+          <app-meal-table [dataSource]="mealTableDataSource$ | async"></app-meal-table>
         </div>
       </div>
     </form>

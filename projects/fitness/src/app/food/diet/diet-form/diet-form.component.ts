@@ -10,10 +10,11 @@ import { AsyncPipe, NgForOf } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { createMealForm, MealForm } from "../../meal/meal-form/meal-form.component";
-import { Observable } from "rxjs";
+import { map, Observable, startWith } from "rxjs";
 import { Meal } from "../../meal/meal";
 import { MealService } from "../../meal/meal.service";
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { MealTableComponent } from "../../meal/meal-table/meal-table.component";
 
 export type DietForm = {
   id: FormControl<string>,
@@ -36,13 +37,19 @@ export type DietDetailsForm = DietForm & {
     MatCardModule,
     MatButtonModule,
     MatAutocompleteModule,
-    AsyncPipe
+    AsyncPipe,
+    MealTableComponent
   ],
   templateUrl: './diet-form.component.html',
   styleUrl: './diet-form.component.scss'
 })
 export class DietFormComponent extends FormComponentAbstract<DietDetails> implements OnInit {
   readonly mealsFormArray: FormArray<FormGroup<MealForm>> = new FormArray<FormGroup<MealForm>>([]);
+  readonly mealTableDataSource$: Observable<Meal[]> =
+    this.mealsFormArray.valueChanges.pipe(
+      startWith(() => this.mealsFormArray.getRawValue()),
+      map(() => this.mealsFormArray.getRawValue())
+    ) as Observable<Meal[]>;
 
   readonly formGroup: FormGroup<DietDetailsForm> = new FormGroup<DietDetailsForm>({
     id: new FormControl<string>("", {nonNullable: true}),

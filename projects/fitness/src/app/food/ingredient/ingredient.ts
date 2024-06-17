@@ -1,4 +1,4 @@
-import { DBItem } from "../items-component.abstract";
+import { DBItem } from "../table-component-abstract.directive";
 
 export type Ingredient = DBItem & {
   name: string;

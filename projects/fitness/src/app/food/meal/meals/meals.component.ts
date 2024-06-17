@@ -1,28 +1,21 @@
 import { Component } from '@angular/core';
-import { ItemsComponentAbstract } from "../../items-component.abstract";
+import { RoutedTableComponentAbstract } from "../../table-component-abstract.directive";
 import { Meal } from "../meal";
-import { ActivatedRoute, RouterModule } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { MealService } from "../meal.service";
-import { MatTableModule } from "@angular/material/table";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCardModule } from "@angular/material/card";
 import { MatDialog } from "@angular/material/dialog";
+import { MealTableComponent } from "../meal-table/meal-table.component";
 
 @Component({
   selector: 'app-meals',
   standalone: true,
   imports: [
-    MatTableModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatCardModule,
-    RouterModule
+    MealTableComponent,
   ],
   templateUrl: './meals.component.html',
   styleUrl: './meals.component.scss'
 })
-export class MealsComponent extends ItemsComponentAbstract<Meal> {
+export class MealsComponent extends RoutedTableComponentAbstract<Meal> {
   constructor(route: ActivatedRoute, service: MealService, dialog: MatDialog) {
     super(route, service, dialog);
   }

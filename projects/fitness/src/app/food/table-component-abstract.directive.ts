@@ -10,26 +10,34 @@ export type DBItem = {
   id: string
 }
 
-export type ItemsComponentAbstractService<Item extends DBItem> = {
+export type TableComponentAbstractService<Item extends DBItem> = {
   delete(id: string): Observable<void>;
   getAll(page: number): Observable<Item[]>;
 }
 
 @Directive()
-export abstract class ItemsComponentAbstract<Item extends DBItem> extends ObservingComponentAbstract {
-  items: Item[] = this.route.snapshot.data['items'];
+export abstract class TableComponentAbstract<Item extends DBItem> extends ObservingComponentAbstract {
+  abstract dataSource: Item[];
 
   displayedColumns: string[] = ["id", "name", "description", "actions"];
+
   totalItems: number = 1;
   pageSize: number = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100]
 
-  protected constructor(
-    private route: ActivatedRoute,
-    private service: ItemsComponentAbstractService<Item>,
+  constructor(
+    private service: TableComponentAbstractService<Item>,
     private dialog: MatDialog
   ) {
     super();
+  }
+
+  onDeleteClick(item: Item): void {
+    this.delete(item);
+  }
+
+  onPageChange(pageEvent: PageEvent): void {
+    this.getAll(pageEvent.pageIndex);
   }
 
   private delete(item: Item): void {
@@ -51,14 +59,19 @@ export abstract class ItemsComponentAbstract<Item extends DBItem> extends Observ
     this.service
       .getAll(page)
       .pipe(takeUntil(this.destroy$))
-      .subscribe((item: Item[]) => this.items = item);
+      .subscribe((item: Item[]) => this.dataSource = item);
   }
+}
 
-  onDeleteClick(item: Item): void {
-    this.delete(item);
-  }
+@Directive()
+export abstract class RoutedTableComponentAbstract<Item extends DBItem> extends TableComponentAbstract<Item> {
+  dataSource: Item[] = this.route.snapshot.data['items'];
 
-  onPageChange(pageEvent: PageEvent): void {
-    this.getAll(pageEvent.pageIndex);
+  constructor(
+    private route: ActivatedRoute,
+    service: TableComponentAbstractService<Item>,
+    dialog: MatDialog
+  ) {
+    super(service, dialog);
   }
 }

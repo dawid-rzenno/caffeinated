@@ -1,28 +1,21 @@
 import { Component } from '@angular/core';
-import { ItemsComponentAbstract } from "../../items-component.abstract";
+import { RoutedTableComponentAbstract } from "../../table-component-abstract.directive";
 import { Diet } from "../diet";
-import { ActivatedRoute, RouterModule } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { DietService } from "../diet.service";
-import { MatTableModule } from "@angular/material/table";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCardModule } from "@angular/material/card";
 import { MatDialog } from "@angular/material/dialog";
+import { DietTableComponent } from "../diet-table/diet-table.component";
 
 @Component({
   selector: 'app-diets',
   standalone: true,
   imports: [
-    MatTableModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatCardModule,
-    RouterModule
+    DietTableComponent
   ],
   templateUrl: './diets.component.html',
   styleUrl: './diets.component.scss'
 })
-export class DietsComponent extends ItemsComponentAbstract<Diet> {
+export class DietsComponent extends RoutedTableComponentAbstract<Diet> {
   constructor(route: ActivatedRoute, service: DietService, dialog: MatDialog) {
     super(route, service, dialog);
   }

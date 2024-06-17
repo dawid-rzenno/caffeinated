@@ -1,30 +1,21 @@
 import { Component } from '@angular/core';
-import { ItemsComponentAbstract } from "../../items-component.abstract";
+import { RoutedTableComponentAbstract } from "../../table-component-abstract.directive";
 import { Ingredient } from "../ingredient";
-import { ActivatedRoute, RouterModule } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { IngredientService } from "../ingredient.service";
 import { MatDialog } from "@angular/material/dialog";
-import { MatTableModule } from "@angular/material/table";
-import { MatPaginatorModule } from "@angular/material/paginator";
-import { MatButtonModule } from "@angular/material/button";
-import { MatCardModule } from "@angular/material/card";
+import { IngredientTableComponent } from "../ingredient-table/ingredient-table.component";
 
 @Component({
   selector: 'app-ingredients',
   standalone: true,
   imports: [
-    MatTableModule,
-    MatPaginatorModule,
-    MatButtonModule,
-    MatCardModule,
-    RouterModule
+    IngredientTableComponent
   ],
   templateUrl: './ingredients.component.html',
   styleUrl: './ingredients.component.scss'
 })
-export class IngredientsComponent extends ItemsComponentAbstract<Ingredient> {
-  override displayedColumns: string[] = ['id', 'name', 'category', 'price', 'actions']
-
+export class IngredientsComponent extends RoutedTableComponentAbstract<Ingredient> {
   constructor(route: ActivatedRoute, service: IngredientService, dialog: MatDialog) {
     super(route, service, dialog);
   }

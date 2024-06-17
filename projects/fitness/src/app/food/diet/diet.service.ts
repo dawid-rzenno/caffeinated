@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ItemsComponentAbstractService } from "../items-component.abstract";
+import { TableComponentAbstractService } from "../table-component-abstract.directive";
 import { Diet, DietDetails } from "./diet";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class DietService implements ItemsComponentAbstractService<Diet>{
+export class DietService implements TableComponentAbstractService<Diet>{
 
   private readonly endpointUrl: string = `${environment.apiUrl}/food/diet`;
 

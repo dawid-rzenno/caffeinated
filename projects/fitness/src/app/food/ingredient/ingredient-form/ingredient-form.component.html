@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>{{ formGroup.controls.id.value ? 'Edit' : 'New' }} Ingredient</mat-card-title>
+    <mat-card-subtitle>
+      Use this form to add a new ingredient to your meal planning database. Fill in the details accurately to ensure
+      proper tracking and usage of the ingredient in recipes and nutritional analysis.
+    </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="formGroup" class="mt-3">

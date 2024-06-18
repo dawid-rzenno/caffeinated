@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Ingredient, IngredientDetails } from "./ingredient";
+import { GetAllRequestData } from "../table-component-abstract.directive";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,10 @@ export class IngredientService {
     return this.http.get<IngredientDetails>(`${this.endpointUrl}/${id}`)
   }
 
-  getAll(): Observable<Ingredient[]> {
-    return this.http.get<Ingredient[]>(`${this.endpointUrl}`)
+  getAll(data?: GetAllRequestData): Observable<Ingredient[]> {
+    const params: HttpParams = new HttpParams({ fromObject: data });
+
+    return this.http.get<Ingredient[]>(`${this.endpointUrl}`, { params })
   }
 
   update(details: IngredientDetails): Observable<IngredientDetails> {

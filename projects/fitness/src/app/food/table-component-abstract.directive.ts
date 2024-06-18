@@ -5,14 +5,26 @@ import { Directive } from "@angular/core";
 import { PageEvent } from "@angular/material/paginator";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "./confirmation-dialog/confirmation-dialog.component";
+import { DefaultPageSize, DefaultPageSizeOptions, DefaultPagination, DefaultTotalItems } from "./pagination";
 
 export type DBItem = {
   id: string
 }
 
+export type Pagination = {
+  pageIndex: number;
+  previousPageIndex?: number | undefined;
+  pageSize: number;
+  length: number;
+}
+
+export type GetAllRequestData = Partial<Pagination> & {
+  search?: string
+}
+
 export type TableComponentAbstractService<Item extends DBItem> = {
   delete(id: string): Observable<void>;
-  getAll(page: number): Observable<Item[]>;
+  getAll(data: GetAllRequestData): Observable<Item[]>;
 }
 
 @Directive()
@@ -21,11 +33,13 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 
   displayedColumns: string[] = ["id", "name", "description", "actions"];
 
-  totalItems: number = 1;
-  pageSize: number = 10;
-  pageSizeOptions: number[] = [5, 10, 25, 100]
+  totalItems: number = DefaultTotalItems;
+  pageSize: number = DefaultPageSize;
+  pageSizeOptions: number[] = DefaultPageSizeOptions;
 
-  constructor(
+  currentPagination: Pagination = DefaultPagination
+
+  protected constructor(
     private service: TableComponentAbstractService<Item>,
     private dialog: MatDialog
   ) {
@@ -37,7 +51,8 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
   }
 
   onPageChange(pageEvent: PageEvent): void {
-    this.getAll(pageEvent.pageIndex);
+    this.currentPagination = pageEvent;
+    this.getAll(pageEvent);
   }
 
   private delete(item: Item): void {
@@ -50,12 +65,12 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
         this.service
           .delete(item.id)
           .pipe(takeUntil(this.destroy$))
-          .subscribe(() => this.getAll());
+          .subscribe(() => this.getAll(this.currentPagination));
       }
     });
   }
 
-  private getAll(page: number = 1): void {
+  private getAll(page: Pagination): void {
     this.service
       .getAll(page)
       .pipe(takeUntil(this.destroy$))
@@ -67,7 +82,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 export abstract class RoutedTableComponentAbstract<Item extends DBItem> extends TableComponentAbstract<Item> {
   dataSource: Item[] = this.route.snapshot.data['items'];
 
-  constructor(
+  protected constructor(
     private route: ActivatedRoute,
     service: TableComponentAbstractService<Item>,
     dialog: MatDialog

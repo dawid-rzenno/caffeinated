@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ShoppingList, ShoppingListDetails } from "./shopping-list";
+import { GetAllRequestData } from "../table-component-abstract.directive";
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,10 @@ export class ShoppingListService {
     return this.http.get<ShoppingListDetails>(`${this.endpointUrl}/${id}`)
   }
 
-  getAll(): Observable<ShoppingList[]> {
-    return this.http.get<ShoppingList[]>(`${this.endpointUrl}`)
+  getAll(data?: GetAllRequestData): Observable<ShoppingList[]> {
+    const params: HttpParams = new HttpParams({ fromObject: data });
+
+    return this.http.get<ShoppingList[]>(`${this.endpointUrl}`, { params })
   }
 
   update(details: ShoppingListDetails): Observable<ShoppingListDetails> {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { TableComponentAbstractService } from "../table-component-abstract.directive";
+import { GetAllRequestData, TableComponentAbstractService } from "../table-component-abstract.directive";
 import { Diet, DietDetails } from "./diet";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +22,10 @@ export class DietService implements TableComponentAbstractService<Diet>{
     return this.http.get<DietDetails>(`${this.endpointUrl}/${id}`)
   }
 
-  getAll(): Observable<Diet[]> {
-    return this.http.get<Diet[]>(`${this.endpointUrl}`)
+  getAll(data?: GetAllRequestData): Observable<Diet[]> {
+    const params: HttpParams = new HttpParams({ fromObject: data });
+
+    return this.http.get<Diet[]>(`${this.endpointUrl}`, { params })
   }
 
   update(details: DietDetails): Observable<DietDetails> {

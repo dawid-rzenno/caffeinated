@@ -3,13 +3,14 @@ import { debounceTime, mergeMap, Observable, takeUntil } from "rxjs";
 import { FormControl, UntypedFormGroup } from "@angular/forms";
 import { Directive, OnInit } from "@angular/core";
 import { ObservingComponentAbstract } from "./observing-component.abstract";
+import { GetAllRequestData } from "./table-component-abstract.directive";
 
 export type FormComponentAbstractService<ItemDetails> = {
   create(item: ItemDetails): Observable<ItemDetails>;
 }
 
 export type SearchComponentAbstractService<Item> = {
-  getAll(filter: string): Observable<Item[]>;
+  getAll(data: GetAllRequestData): Observable<Item[]>;
 }
 
 @Directive()
@@ -26,7 +27,7 @@ export abstract class FormComponentAbstract<ItemDetails extends Record<string, a
   createAutocompleteOptions$<T>(searchFormControl: FormControl<string>, service: SearchComponentAbstractService<T>): Observable<T[]> {
     return searchFormControl.valueChanges.pipe(
       debounceTime(250),
-      mergeMap((value: string) => service.getAll(value)),
+      mergeMap((search: string) => service.getAll({ search })),
       takeUntil(this.destroy$)
     )
   }

@@ -8,17 +8,19 @@ import { TableComponentAbstract } from "../../table-component-abstract.directive
 import { Diet } from "../diet";
 import { DietService } from "../diet.service";
 import { MatDialog } from "@angular/material/dialog";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
 @Component({
   selector: 'app-diet-table',
   standalone: true,
-	imports: [
+  imports: [
     MatTableModule,
     MatPaginatorModule,
     MatButtonModule,
     RouterModule,
-    MatCardModule
-	],
+    MatCardModule,
+    FaIconComponent
+  ],
   templateUrl: './diet-table.component.html',
   styleUrl: './diet-table.component.scss'
 })

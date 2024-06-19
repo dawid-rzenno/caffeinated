@@ -23,7 +23,7 @@ import { MealTableComponent } from "../../meal/meal-table/meal-table.component";
 import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingredient-table.component";
 
 export type ShoppingListForm = {
-  id: FormControl<string>,
+  id: FormControl<number | undefined>,
   name: FormControl<string>,
   description: FormControl<string>,
 }
@@ -61,14 +61,14 @@ export class ShoppingListFormComponent extends FormComponentAbstract<ShoppingLis
     ) as Observable<Ingredient[]>;
 
   readonly formGroup: FormGroup<ShoppingListDetailsForm> = new FormGroup<ShoppingListDetailsForm>({
-    id: new FormControl<string>('', {nonNullable: true}),
+    id: new FormControl<number | undefined>(undefined, {nonNullable: true}),
     name: new FormControl<string>('', {nonNullable: true}),
     description: new FormControl<string>('', {nonNullable: true}),
     ingredients: this.ingredientsFormArray,
   })
 
   readonly defaultFormGroupValue: ShoppingListDetails = {
-    id: "",
+    id: undefined,
     name: "",
     description: "",
     ingredients: []

@@ -15,7 +15,17 @@ export class IngredientService {
   constructor(private http: HttpClient) { }
 
   create(details: IngredientDetails): Observable<IngredientDetails> {
-    return this.http.post<IngredientDetails>(`${this.endpointUrl}`, details)
+    const body: Partial<IngredientDetails> = {
+      name: details.name,
+      category_id: details.category_id,
+      price: details.price,
+      calories: details.calories,
+      proteins: details.proteins,
+      carbohydrates: details.carbohydrates,
+      fats: details.fats,
+    }
+
+    return this.http.post<IngredientDetails>(`${this.endpointUrl}`, body)
   }
 
   get(id: string): Observable<IngredientDetails> {
@@ -32,7 +42,7 @@ export class IngredientService {
     return this.http.put<IngredientDetails>(`${this.endpointUrl}/${details.id}`, details)
   }
 
-  delete(id: string): Observable<void> {
+  delete(id: number | undefined): Observable<void> {
     return this.http.delete<void>(`${this.endpointUrl}/${id}`)
   }
 }

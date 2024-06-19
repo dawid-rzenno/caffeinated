@@ -17,7 +17,7 @@ import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from "@angular/ma
 import { MealTableComponent } from "../../meal/meal-table/meal-table.component";
 
 export type DietForm = {
-  id: FormControl<string>,
+  id: FormControl<number | undefined>,
   name: FormControl<string>,
   description: FormControl<string>,
 }
@@ -52,14 +52,14 @@ export class DietFormComponent extends FormComponentAbstract<DietDetails> implem
     ) as Observable<Meal[]>;
 
   readonly formGroup: FormGroup<DietDetailsForm> = new FormGroup<DietDetailsForm>({
-    id: new FormControl<string>("", {nonNullable: true}),
+    id: new FormControl<number | undefined>(undefined, {nonNullable: true}),
     name: new FormControl<string>("", {nonNullable: true}),
     description: new FormControl<string>("", {nonNullable: true}),
     meals: this.mealsFormArray
   });
 
   readonly defaultFormGroupValue: DietDetails = {
-    id: "",
+    id: undefined,
     name: "",
     description: "",
     meals: []

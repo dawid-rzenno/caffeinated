@@ -9,3 +9,7 @@ export type ShoppingList = DBItem & {
 export type ShoppingListDetails = ShoppingList & {
   ingredients: Ingredient[]
 }
+
+export type ShoppingListRequest = Omit<ShoppingListDetails, 'ingredients'> & {
+  ingredient_ids: number[];
+}

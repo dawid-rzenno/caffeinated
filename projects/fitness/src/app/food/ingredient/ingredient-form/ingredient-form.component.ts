@@ -12,9 +12,9 @@ import { IngredientService } from "../ingredient.service";
 import { Ingredient, IngredientDetails } from "../ingredient";
 
 export type IngredientForm = {
-  id: FormControl<string>,
+  id: FormControl<number | undefined>,
   name: FormControl<string>,
-  category: FormControl<string>,
+  category_id: FormControl<number>,
   price: FormControl<number>,
   quantity: FormControl<number>,
   amount: FormControl<number>
@@ -28,9 +28,9 @@ export type IngredientDetailsForm = IngredientForm & {
 }
 
 export const createIngredientForm = (ingredient: Ingredient) => new FormGroup<IngredientForm>({
-  id: new FormControl<string>(ingredient.id, {nonNullable: true}),
+  id: new FormControl<number | undefined>(ingredient.id, {nonNullable: true}),
   name: new FormControl<string>(ingredient.name, {nonNullable: true}),
-  category: new FormControl<string>(ingredient.category, {nonNullable: true}),
+  category_id: new FormControl<number>(ingredient.category_id, {nonNullable: true}),
   price: new FormControl<number>(ingredient.price, {nonNullable: true}),
   quantity: new FormControl<number>(ingredient.quantity ?? 0, {nonNullable: true}),
   amount: new FormControl<number>(ingredient.amount, {nonNullable: true})
@@ -54,8 +54,8 @@ export const createIngredientForm = (ingredient: Ingredient) => new FormGroup<In
 })
 export class IngredientFormComponent extends FormComponentAbstract<IngredientDetails> {
   readonly formGroup: FormGroup<IngredientDetailsForm> = new FormGroup<IngredientDetailsForm>({
-    id: new FormControl<string>('', {nonNullable: true}),
-    category: new FormControl<string>('', {nonNullable: true}),
+    id: new FormControl<number | undefined>(undefined, {nonNullable: true}),
+    category_id: new FormControl<number>(0, {nonNullable: true}),
     name: new FormControl<string>('', {nonNullable: true}),
     price: new FormControl<number>(0, {nonNullable: true}),
     quantity: new FormControl<number>(0, {nonNullable: true}),
@@ -70,9 +70,9 @@ export class IngredientFormComponent extends FormComponentAbstract<IngredientDet
     amount: 0,
     calories: 0,
     carbohydrates: 0,
-    category: "",
+    category_id: 0,
     fats: 0,
-    id: "",
+    id: undefined,
     name: "",
     price: 0,
     proteins: 0,

@@ -7,6 +7,11 @@ export type Meal = DBItem & {
 }
 
 export type MealDetails = Meal & {
+  rating: number;
   ingredients: Ingredient[]
+}
+
+export type MealRequest = Omit<MealDetails, 'ingredients'> & {
+  ingredient_ids: number[];
 }
 

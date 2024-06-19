@@ -25,6 +25,7 @@ import { MealService } from "../meal.service";
 export class MealTableComponent extends TableComponentAbstract<Meal> {
   @Input({ transform: (value: Meal[] | null) => value ?? []}) dataSource: Meal[] = [];
 
+  override displayedColumns: string[] = ["id", "name", "description", "rating", "actions"];
 
   constructor(service: MealService, dialog: MatDialog) {
     super(service, dialog);

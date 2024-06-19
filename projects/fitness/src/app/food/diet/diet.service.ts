@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { GetAllRequestData, TableComponentAbstractService } from "../table-component-abstract.directive";
-import { Diet, DietDetails } from "./diet";
+import { Diet, DietDetails, DietRequest } from "./diet";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
+import { Meal } from "../meal/meal";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,13 @@ export class DietService implements TableComponentAbstractService<Diet>{
   constructor(private http: HttpClient) { }
 
   create(details: DietDetails): Observable<DietDetails> {
-    return this.http.post<DietDetails>(`${this.endpointUrl}`, details)
+    const body: Partial<DietRequest> = {
+      name: details.name,
+      description: details.description,
+      meal_ids: details.meals.map((meal: Meal) => meal.id!),
+    }
+
+    return this.http.post<DietDetails>(`${this.endpointUrl}`, body)
   }
 
   get(id: string): Observable<DietDetails> {
@@ -32,7 +39,7 @@ export class DietService implements TableComponentAbstractService<Diet>{
     return this.http.put<DietDetails>(`${this.endpointUrl}/${details.id}`, details)
   }
 
-  delete(id: string): Observable<void> {
+  delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.endpointUrl}/${id}`)
   }
 }

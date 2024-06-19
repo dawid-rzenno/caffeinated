@@ -9,3 +9,7 @@ export type Diet = DBItem & {
 export type DietDetails = Diet & {
   meals: Meal[];
 }
+
+export type DietRequest = Omit<DietDetails, 'meals'> & {
+  meal_ids: number[];
+}

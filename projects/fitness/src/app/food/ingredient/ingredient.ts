@@ -2,7 +2,7 @@ import { DBItem } from "../table-component-abstract.directive";
 
 export type Ingredient = DBItem & {
   name: string;
-  category: string;
+  category_id: number;
   price: number;
   quantity?: number;
   amount: number;

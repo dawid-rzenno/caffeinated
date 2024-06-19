@@ -8,7 +8,7 @@ import { ConfirmationDialogComponent } from "./confirmation-dialog/confirmation-
 import { DefaultPageSize, DefaultPageSizeOptions, DefaultPagination, DefaultTotalItems } from "./pagination";
 
 export type DBItem = {
-  id: string
+  id?: number
 }
 
 export type Pagination = {
@@ -23,7 +23,7 @@ export type GetAllRequestData = Partial<Pagination> & {
 }
 
 export type TableComponentAbstractService<Item extends DBItem> = {
-  delete(id: string): Observable<void>;
+  delete(id: number): Observable<void>;
   getAll(data: GetAllRequestData): Observable<Item[]>;
 }
 
@@ -61,7 +61,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      if (result && item.id) {
         this.service
           .delete(item.id)
           .pipe(takeUntil(this.destroy$))

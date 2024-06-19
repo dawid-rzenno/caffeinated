@@ -43,7 +43,7 @@ export abstract class FormComponentAbstract<ItemDetails extends Record<string, a
   }
 
   onCreateClick(): void {
-    this.service.create(this.formGroup.getRawValue())
+    this.service.create(this.formGroup.getRawValue()).subscribe()
   }
 
   onResetClick(): void {

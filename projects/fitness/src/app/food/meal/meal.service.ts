@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Meal, MealDetails } from "./meal";
+import { Meal, MealDetails, MealRequest } from "./meal";
 import { GetAllRequestData } from "../table-component-abstract.directive";
+import { Ingredient } from "../ingredient/ingredient";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,14 @@ export class MealService {
   constructor(private http: HttpClient) { }
 
   create(details: MealDetails): Observable<MealDetails> {
-    return this.http.post<MealDetails>(`${this.endpointUrl}`, details)
+    const body: Partial<MealRequest> = {
+      name: details.name,
+      description: details.description,
+      ingredient_ids: details.ingredients.map((ingredient: Ingredient) => ingredient.id!),
+      rating: details.rating
+    }
+
+    return this.http.post<MealDetails>(`${this.endpointUrl}`, body)
   }
 
   get(id: string): Observable<MealDetails> {
@@ -32,7 +40,7 @@ export class MealService {
     return this.http.put<MealDetails>(`${this.endpointUrl}/${details.id}`, details)
   }
 
-  delete(id: string): Observable<void> {
+  delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.endpointUrl}/${id}`)
   }
 }

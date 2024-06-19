@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { ShoppingList, ShoppingListDetails } from "./shopping-list";
+import { ShoppingList, ShoppingListDetails, ShoppingListRequest } from "./shopping-list";
 import { GetAllRequestData } from "../table-component-abstract.directive";
+import { Ingredient } from "../ingredient/ingredient";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,13 @@ export class ShoppingListService {
   constructor(private http: HttpClient) { }
 
   create(details: ShoppingListDetails): Observable<ShoppingListDetails> {
-    return this.http.post<ShoppingListDetails>(`${this.endpointUrl}`, details)
+    const body: Partial<ShoppingListRequest> = {
+      name: details.name,
+      description: details.description,
+      ingredient_ids: details.ingredients.map((ingredient: Ingredient) => ingredient.id!),
+    }
+
+    return this.http.post<ShoppingListDetails>(`${this.endpointUrl}`, body)
   }
 
   get(id: string): Observable<ShoppingListDetails> {
@@ -32,7 +39,7 @@ export class ShoppingListService {
     return this.http.put<ShoppingListDetails>(`${this.endpointUrl}/${details.id}`, details)
   }
 
-  delete(id: string): Observable<void> {
+  delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.endpointUrl}/${id}`)
   }
 }

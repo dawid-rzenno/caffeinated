@@ -41,6 +41,15 @@
           <div class="col-6">
             <app-ingredient-table [dataSource]="ingredientTableDataSource$ | async"></app-ingredient-table>
           </div>
+          <div class="col-6">
+            <mat-button-toggle-group formControlName="rating">
+              <mat-button-toggle [value]="0">1</mat-button-toggle>
+              <mat-button-toggle [value]="1">2</mat-button-toggle>
+              <mat-button-toggle [value]="2">3</mat-button-toggle>
+              <mat-button-toggle [value]="3">4</mat-button-toggle>
+              <mat-button-toggle [value]="4">5</mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
         </div>
       </div>
     </form>

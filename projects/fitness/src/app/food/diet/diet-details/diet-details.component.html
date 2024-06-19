@@ -1,19 +1,11 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      Diet: {{details.name}}
+      Diet – {{ details.name }}
     </mat-card-title>
+    <mat-card-subtitle>{{ details.description }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <ul>
-      <li> Description: {{details.description}}</li>
-      <li> Meals: <br>
-        <ul>
-          @for (meal of details.meals; track meal.id) {
-            <li><a [routerLink]="['/food/meal/read', meal.id]">{{ meal.name }}</a></li>
-          }
-        </ul>
-      </li>
-    </ul>
+    <app-meal-table [dataSource]="details.meals"></app-meal-table>
   </mat-card-content>
 </mat-card>

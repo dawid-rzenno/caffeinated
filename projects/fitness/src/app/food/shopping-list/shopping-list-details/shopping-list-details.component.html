@@ -1,7 +1,11 @@
-<p>shopping-list works!</p>
-
-<h1>{{details.name}}</h1>
-
-<ul>
-  <li *ngFor="let ingredient of details.ingredients">{{ingredient.name}}</li>
-</ul>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Shopping List: {{ details.name }}
+    </mat-card-title>
+    <mat-card-subtitle>{{ details.description }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <app-ingredient-table [dataSource]="details.ingredients"></app-ingredient-table>
+  </mat-card-content>
+</mat-card>

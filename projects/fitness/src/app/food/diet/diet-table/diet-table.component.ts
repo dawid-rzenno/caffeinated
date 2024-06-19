@@ -9,6 +9,7 @@ import { Diet } from "../diet";
 import { DietService } from "../diet.service";
 import { MatDialog } from "@angular/material/dialog";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-diet-table',
@@ -19,7 +20,8 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
     MatButtonModule,
     RouterModule,
     MatCardModule,
-    FaIconComponent
+    FaIconComponent,
+    NgIf
   ],
   templateUrl: './diet-table.component.html',
   styleUrl: './diet-table.component.scss'

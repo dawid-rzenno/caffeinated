@@ -1,7 +1,7 @@
 import { Observable, takeUntil } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
 import { ObservingComponentAbstract } from "./observing-component.abstract";
-import { Directive } from "@angular/core";
+import { Directive, Input } from "@angular/core";
 import { PageEvent } from "@angular/material/paginator";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "./confirmation-dialog/confirmation-dialog.component";
@@ -31,6 +31,8 @@ export type TableComponentAbstractService<Item extends DBItem> = {
 export abstract class TableComponentAbstract<Item extends DBItem> extends ObservingComponentAbstract {
   abstract dataSource: Item[];
 
+  @Input() permanentDelete: boolean = false;
+
   displayedColumns: string[] = ["id", "name", "description", "actions"];
 
   totalItems: number = DefaultTotalItems;
@@ -50,6 +52,10 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
     this.delete(item);
   }
 
+  onRemoveClick(item: Item): void {
+    this.remove(item);
+  }
+
   onPageChange(pageEvent: PageEvent): void {
     this.currentPagination = pageEvent;
     this.getAll(pageEvent);
@@ -57,7 +63,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 
   private delete(item: Item): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { title: "Delete item", content: "Are you sure you want to delete this item?", buttonText: "Delete" },
+      data: { title: "Delete item", content: "Are you sure you want to delete this item? This is a permanent action.", buttonText: "Delete" },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -70,6 +76,10 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
     });
   }
 
+  private remove(item: Item): void {
+    this.dataSource = this.dataSource.filter(value => value.id !== item.id);
+  }
+
   private getAll(page: Pagination): void {
     this.service
       .getAll(page)
@@ -79,14 +89,8 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 }
 
 @Directive()
-export abstract class RoutedTableComponentAbstract<Item extends DBItem> extends TableComponentAbstract<Item> {
+export abstract class RoutedTableComponentAbstract<Item extends DBItem> {
   dataSource: Item[] = this.route.snapshot.data['items'];
 
-  protected constructor(
-    private route: ActivatedRoute,
-    service: TableComponentAbstractService<Item>,
-    dialog: MatDialog
-  ) {
-    super(service, dialog);
-  }
+  protected constructor(private route: ActivatedRoute) {}
 }

@@ -1,6 +1,7 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>Meals</mat-card-title>
+  <mat-card-header class="d-flex justify-content-between">
+    <mat-card-title><span>Meals</span></mat-card-title>
+    <a [routerLink]="['/food/meal/create']"><fa-icon [icon]="['fas', 'plus']"></fa-icon></a>
   </mat-card-header>
   <mat-card-content>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -30,7 +31,16 @@
         <td mat-cell *matCellDef="let item">
           <button mat-button="primary" [routerLink]="['/food/meal/read', item.id]">Read</button> &nbsp;
           <button mat-button="primary" [routerLink]="['/food/meal/edit', item.id]">Edit</button> &nbsp;
-          <button mat-button (click)="onDeleteClick(item)">Delete</button>
+
+          <ng-container *ngIf="permanentDelete; then deleteButton; else removeButton"></ng-container>
+
+          <ng-template #removeButton>
+            <button mat-button (click)="onRemoveClick(item)">Remove</button>
+          </ng-template>
+
+          <ng-template #deleteButton>
+            <button mat-button (click)="onDeleteClick(item)">Delete</button>
+          </ng-template>
         </td>
       </ng-container>
 

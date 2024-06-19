@@ -8,6 +8,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { RouterModule } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { MealService } from "../meal.service";
+import { NgIf } from "@angular/common";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
 @Component({
   selector: 'app-meal-table',
@@ -17,7 +19,9 @@ import { MealService } from "../meal.service";
     MatPaginatorModule,
     MatButtonModule,
     RouterModule,
-    MatCardModule
+    MatCardModule,
+    NgIf,
+    FaIconComponent
   ],
   templateUrl: './meal-table.component.html',
   styleUrl: './meal-table.component.scss'

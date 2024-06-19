@@ -8,6 +8,8 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { RouterModule } from "@angular/router";
 import { ShoppingListService } from "../shopping-list.service";
 import { MatDialog } from "@angular/material/dialog";
+import { NgIf } from "@angular/common";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
 @Component({
   selector: 'app-shopping-list-table',
@@ -18,6 +20,8 @@ import { MatDialog } from "@angular/material/dialog";
     MatButtonModule,
     MatCardModule,
     RouterModule,
+    NgIf,
+    FaIconComponent,
   ],
   templateUrl: './shopping-list-table.component.html',
   styleUrl: './shopping-list-table.component.scss'

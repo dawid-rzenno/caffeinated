@@ -8,6 +8,8 @@ import { MatCardModule } from "@angular/material/card";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { RouterModule } from "@angular/router";
+import { NgIf } from "@angular/common";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
 @Component({
   selector: 'app-ingredient-table',
@@ -17,7 +19,9 @@ import { RouterModule } from "@angular/router";
     MatPaginatorModule,
     MatButtonModule,
     RouterModule,
-    MatCardModule
+    MatCardModule,
+    NgIf,
+    FaIconComponent
   ],
   templateUrl: './ingredient-table.component.html',
   styleUrl: './ingredient-table.component.scss'

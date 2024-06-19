@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { RoutedTableComponentAbstract } from "../../table-component-abstract.directive";
 import { ActivatedRoute } from "@angular/router";
 import { ShoppingList } from "../shopping-list";
-import { ShoppingListService } from "../shopping-list.service";
-import { MatDialog } from "@angular/material/dialog";
 import { ShoppingListTableComponent } from "../shopping-list-table/shopping-list-table.component";
 
 @Component({
@@ -16,7 +14,7 @@ import { ShoppingListTableComponent } from "../shopping-list-table/shopping-list
   styleUrl: './shopping-lists.component.scss'
 })
 export class ShoppingListsComponent extends RoutedTableComponentAbstract<ShoppingList> {
-  constructor(route: ActivatedRoute, service: ShoppingListService, dialog: MatDialog) {
-    super(route, service, dialog);
+  constructor(route: ActivatedRoute) {
+    super(route);
   }
 }

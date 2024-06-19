@@ -26,7 +26,16 @@
         <td mat-cell *matCellDef="let item">
           <button mat-button="primary" [routerLink]="['/food/diet/read', item.id]">Read</button> &nbsp;
           <button mat-button="primary" [routerLink]="['/food/diet/edit', item.id]">Edit</button> &nbsp;
-          <button mat-button (click)="onDeleteClick(item)">Delete</button>
+
+          <ng-container *ngIf="permanentDelete; then deleteButton; else removeButton"></ng-container>
+
+          <ng-template #removeButton>
+            <button mat-button (click)="onRemoveClick(item)">Remove</button>
+          </ng-template>
+
+          <ng-template #deleteButton>
+            <button mat-button (click)="onDeleteClick(item)">Delete</button>
+          </ng-template>
         </td>
       </ng-container>
 

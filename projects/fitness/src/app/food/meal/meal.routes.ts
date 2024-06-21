@@ -2,8 +2,8 @@ import { Route } from "@angular/router";
 import { MealFormComponent } from "./meal-form/meal-form.component";
 import { MealDetailsComponent } from "./meal-details/meal-details.component";
 import { mealResolver } from "./meal.resolver";
-import { MealsComponent } from "./meals/meals.component";
 import { createTitle } from "../create-title.funtion";
+import { MealTableComponent } from "./meal-table/meal-table.component";
 
 export const mealRoutes: Route[] = [
   {
@@ -11,9 +11,9 @@ export const mealRoutes: Route[] = [
     children: [
       {
         path: 'all',
-        component: MealsComponent,
+        component: MealTableComponent,
         resolve: {
-          items: mealResolver
+          paginatedResponse: mealResolver
         },
         title: createTitle('Meals'),
       },

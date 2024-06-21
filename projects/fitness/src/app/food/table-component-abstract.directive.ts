@@ -1,51 +1,57 @@
 import { Observable, takeUntil } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ObservingComponentAbstract } from "./observing-component.abstract";
 import { Directive, Input } from "@angular/core";
 import { PageEvent } from "@angular/material/paginator";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "./confirmation-dialog/confirmation-dialog.component";
-import { DefaultPageSize, DefaultPageSizeOptions, DefaultPagination, DefaultTotalItems } from "./pagination";
+import {
+  DefaultPageSizeOptions,
+  DefaultPagination,
+  PaginatedResponse,
+  Pagination,
+  PaginationRequestParams,
+  PaginationResponseToPagination,
+  PaginationToPaginationRequest
+} from "./pagination";
 
 export type DBItem = {
   id?: number
 }
 
-export type Pagination = {
-  pageIndex: number;
-  previousPageIndex?: number | undefined;
-  pageSize: number;
-  length: number;
-}
-
-export type GetAllRequestData = Partial<Pagination> & {
-  search?: string
+export type GetAllRequestParams = PaginationRequestParams & {
+  search?: string;
 }
 
 export type TableComponentAbstractService<Item extends DBItem> = {
   delete(id: number): Observable<void>;
-  getAll(data: GetAllRequestData): Observable<Item[]>;
+  getAll(params: GetAllRequestParams): Observable<PaginatedResponse<Item>>;
 }
 
 @Directive()
 export abstract class TableComponentAbstract<Item extends DBItem> extends ObservingComponentAbstract {
-  abstract dataSource: Item[];
-
+  @Input({ transform: (value: any[] | null) => value ?? []}) dataSource: Item[] = [];
   @Input() permanentDelete: boolean = false;
 
   displayedColumns: string[] = ["id", "name", "description", "actions"];
-
-  totalItems: number = DefaultTotalItems;
-  pageSize: number = DefaultPageSize;
   pageSizeOptions: number[] = DefaultPageSizeOptions;
 
   currentPagination: Pagination = DefaultPagination
 
   protected constructor(
     private service: TableComponentAbstractService<Item>,
+    private route: ActivatedRoute,
+    private router: Router,
     private dialog: MatDialog
   ) {
     super();
+
+    const paginatedResponse: PaginatedResponse<Item> = this.route.snapshot.data['paginatedResponse'];
+
+    if (paginatedResponse) {
+      this.currentPagination = PaginationResponseToPagination(paginatedResponse.pagination);
+      this.dataSource = paginatedResponse.results
+    }
   }
 
   onDeleteClick(item: Item): void {
@@ -80,17 +86,13 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
     this.dataSource = this.dataSource.filter(value => value.id !== item.id);
   }
 
-  private getAll(page: Pagination): void {
+  private getAll(pagination: Pagination): void {
     this.service
-      .getAll(page)
+      .getAll(PaginationToPaginationRequest(pagination))
       .pipe(takeUntil(this.destroy$))
-      .subscribe((item: Item[]) => this.dataSource = item);
+      .subscribe((response: PaginatedResponse<Item>) => {
+        this.currentPagination = PaginationResponseToPagination(response.pagination)
+        this.dataSource = response.results;
+      });
   }
-}
-
-@Directive()
-export abstract class RoutedTableComponentAbstract<Item extends DBItem> {
-  dataSource: Item[] = this.route.snapshot.data['items'];
-
-  protected constructor(private route: ActivatedRoute) {}
 }

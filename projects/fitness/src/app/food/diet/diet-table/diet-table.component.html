@@ -45,8 +45,9 @@
   </mat-card-content>
   <mat-card-actions>
     <mat-paginator
-      [length]="totalItems"
-      [pageSize]="pageSize"
+      [length]="currentPagination.length"
+      [pageSize]="currentPagination.pageSize"
+      [pageIndex]="currentPagination.pageIndex"
       [pageSizeOptions]="pageSizeOptions"
       (page)="onPageChange($event)"
       aria-label="Select page"

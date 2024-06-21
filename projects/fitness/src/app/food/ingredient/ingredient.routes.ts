@@ -3,7 +3,7 @@ import { ingredientResolver } from "./ingredient.resolver";
 import { createTitle } from "../create-title.funtion";
 import { IngredientDetailsComponent } from "./ingredient-details/ingredient-details.component";
 import { IngredientFormComponent } from "./ingredient-form/ingredient-form.component";
-import { IngredientsComponent } from "./ingredients/ingredients.component";
+import { IngredientTableComponent } from "./ingredient-table/ingredient-table.component";
 
 export const ingredientRoutes: Route[] = [
   {
@@ -11,9 +11,9 @@ export const ingredientRoutes: Route[] = [
     children: [
       {
         path: 'all',
-        component: IngredientsComponent,
+        component: IngredientTableComponent,
         resolve: {
-          items: ingredientResolver
+          paginatedResponse: ingredientResolver
         },
         title: createTitle('Ingredients'),
       },

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { GetAllRequestData, TableComponentAbstractService } from "../table-component-abstract.directive";
+import { GetAllRequestParams, TableComponentAbstractService } from "../table-component-abstract.directive";
 import { Diet, DietDetails, DietRequest } from "./diet";
 import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Meal } from "../meal/meal";
+import { PaginatedResponse } from "../pagination";
 
 @Injectable({
   providedIn: 'root'
 })
-export class DietService implements TableComponentAbstractService<Diet>{
+export class DietService implements TableComponentAbstractService<Diet> {
 
   private readonly endpointUrl: string = `${environment.apiUrl}/food/diet`;
 
@@ -29,10 +30,10 @@ export class DietService implements TableComponentAbstractService<Diet>{
     return this.http.get<DietDetails>(`${this.endpointUrl}/${id}`)
   }
 
-  getAll(data?: GetAllRequestData): Observable<Diet[]> {
-    const params: HttpParams = new HttpParams({ fromObject: data });
-
-    return this.http.get<Diet[]>(`${this.endpointUrl}`, { params })
+  getAll(params?: GetAllRequestParams): Observable<PaginatedResponse<Diet>> {
+    return this.http.get<PaginatedResponse<Diet>>(`${this.endpointUrl}`, {
+      params: new HttpParams({ fromObject: params })
+    })
   }
 
   update(details: DietDetails): Observable<DietDetails> {

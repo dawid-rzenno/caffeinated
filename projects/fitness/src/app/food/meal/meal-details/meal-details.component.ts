@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { MealDetails } from "../meal";
 import { DetailsComponentAbstract } from "../../details-component.abstract";
@@ -14,8 +14,7 @@ import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingr
     IngredientTableComponent
   ],
   templateUrl: './meal-details.component.html',
-  styleUrl: './meal-details.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './meal-details.component.scss'
 })
 export class MealDetailsComponent extends DetailsComponentAbstract<MealDetails> {
 

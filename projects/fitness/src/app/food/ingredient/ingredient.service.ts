@@ -3,12 +3,13 @@ import { Observable } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Ingredient, IngredientDetails } from "./ingredient";
-import { GetAllRequestData } from "../table-component-abstract.directive";
+import { GetAllRequestParams, TableComponentAbstractService } from "../table-component-abstract.directive";
+import { PaginatedResponse } from "../pagination";
 
 @Injectable({
   providedIn: 'root'
 })
-export class IngredientService {
+export class IngredientService implements TableComponentAbstractService<Ingredient> {
 
   private readonly endpointUrl: string = `${environment.apiUrl}/food/ingredient`;
 
@@ -32,10 +33,10 @@ export class IngredientService {
     return this.http.get<IngredientDetails>(`${this.endpointUrl}/${id}`)
   }
 
-  getAll(data?: GetAllRequestData): Observable<Ingredient[]> {
-    const params: HttpParams = new HttpParams({ fromObject: data });
-
-    return this.http.get<Ingredient[]>(`${this.endpointUrl}`, { params })
+  getAll(params?: GetAllRequestParams): Observable<PaginatedResponse<Ingredient>> {
+    return this.http.get<PaginatedResponse<Ingredient>>(`${this.endpointUrl}`, {
+      params: new HttpParams({ fromObject: params })
+    })
   }
 
   update(details: IngredientDetails): Observable<IngredientDetails> {

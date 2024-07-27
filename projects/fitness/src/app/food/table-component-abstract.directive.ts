@@ -41,8 +41,13 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 
     const paginatedResponse: PaginatedResponse<Item> = this.route.snapshot.data['paginatedResponse'];
 
-    this.matPaginatorConfig = paginatedResponse.createMatPaginatorConfig();
-    this.dataSource = paginatedResponse.content
+    // paginatedResponse won't be defined if a component is a child of parent component
+    if (paginatedResponse) {
+      this.matPaginatorConfig = paginatedResponse.createMatPaginatorConfig();
+      this.dataSource = paginatedResponse.content
+    } else {
+      this.matPaginatorConfig = new MatPaginatorConfig();
+    }
   }
 
   onDeleteClick(item: Item): void {

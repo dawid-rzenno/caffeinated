@@ -2,7 +2,7 @@ import { ResolveFn } from '@angular/router';
 import { inject } from "@angular/core";
 import { Ingredient, IngredientDetails } from "./ingredient";
 import { IngredientService } from "./ingredient.service";
-import { PaginatedResponse } from "../pagination";
+import { PaginatedResponse } from "../paginated-response";
 
 export const ingredientResolver: ResolveFn<IngredientDetails | PaginatedResponse<Ingredient>> = (route) => {
 

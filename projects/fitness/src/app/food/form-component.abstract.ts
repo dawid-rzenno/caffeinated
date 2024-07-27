@@ -4,7 +4,7 @@ import { FormControl, UntypedFormGroup } from "@angular/forms";
 import { Directive, OnInit } from "@angular/core";
 import { ObservingComponentAbstract } from "./observing-component.abstract";
 import { GetAllRequestParams } from "./table-component-abstract.directive";
-import { PaginatedResponse } from "./pagination";
+import { PaginatedResponse } from "./paginated-response";
 
 export type FormComponentAbstractService<ItemDetails> = {
   create(item: ItemDetails): Observable<ItemDetails>;
@@ -12,10 +12,6 @@ export type FormComponentAbstractService<ItemDetails> = {
 
 export type SearchComponentAbstractService<Item> = {
   getAll(data: GetAllRequestParams): Observable<PaginatedResponse<Item>>;
-}
-
-export function PaginatedResponseToResults<Item>(response: PaginatedResponse<Item>): Item[] {
-  return response.results;
 }
 
 @Directive()
@@ -33,7 +29,7 @@ export abstract class FormComponentAbstract<ItemDetails extends Record<string, a
     return searchFormControl.valueChanges.pipe(
       debounceTime(250),
       mergeMap((search: string) => service.getAll({ search })),
-      map((response: PaginatedResponse<T>) => response.results),
+      map((response: PaginatedResponse<T>) => response.content),
       takeUntil(this.destroy$)
     )
   }

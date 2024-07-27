@@ -2,7 +2,7 @@ import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { inject } from "@angular/core";
 import { Meal, MealDetails } from "./meal";
 import { MealService } from "./meal.service";
-import { PaginatedResponse } from "../pagination";
+import { PaginatedResponse } from "../paginated-response";
 
 export const mealResolver: ResolveFn<MealDetails | PaginatedResponse<Meal>> = (route: ActivatedRouteSnapshot) => {
 

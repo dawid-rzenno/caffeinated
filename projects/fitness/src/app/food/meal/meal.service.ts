@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { Meal, MealDetails, MealRequest } from "./meal";
 import { GetAllRequestParams, TableComponentAbstractService } from "../table-component-abstract.directive";
 import { Ingredient } from "../ingredient/ingredient";
-import { PaginatedResponse } from "../pagination";
+import { PaginatedResponse } from "../paginated-response";
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,9 @@ export class MealService implements TableComponentAbstractService<Meal>{
   getAll(params?: GetAllRequestParams): Observable<PaginatedResponse<Meal>> {
     return this.http.get<PaginatedResponse<Meal>>(`${this.endpointUrl}`, {
       params: new HttpParams({ fromObject: params })
-    })
+    }).pipe(
+      map((paginatedResponse: PaginatedResponse<Meal>) => new PaginatedResponse<Meal>(paginatedResponse))
+    )
   }
 
   update(details: MealDetails): Observable<MealDetails> {

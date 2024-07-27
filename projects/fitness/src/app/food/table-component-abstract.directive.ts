@@ -5,21 +5,14 @@ import { Directive, Input } from "@angular/core";
 import { PageEvent } from "@angular/material/paginator";
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationDialogComponent } from "./confirmation-dialog/confirmation-dialog.component";
-import {
-  DefaultPageSizeOptions,
-  DefaultPagination,
-  PaginatedResponse,
-  Pagination,
-  PaginationRequestParams,
-  PaginationResponseToPagination,
-  PaginationToPaginationRequest
-} from "./pagination";
+import { MatPaginatorConfig, PaginationParams } from "./mat-paginator-config";
+import { PaginatedResponse } from "./paginated-response";
 
 export type DBItem = {
   id?: number
 }
 
-export type GetAllRequestParams = PaginationRequestParams & {
+export type GetAllRequestParams = Partial<PaginationParams> & {
   search?: string;
 }
 
@@ -34,9 +27,9 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
   @Input() permanentDelete: boolean = false;
 
   displayedColumns: string[] = ["id", "name", "description", "actions"];
-  pageSizeOptions: number[] = DefaultPageSizeOptions;
+  pageSizeOptions: number[] = MatPaginatorConfig.DefaultPageSizeOptions;
 
-  currentPagination: Pagination = DefaultPagination
+  matPaginatorConfig: MatPaginatorConfig;
 
   protected constructor(
     private service: TableComponentAbstractService<Item>,
@@ -48,10 +41,8 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 
     const paginatedResponse: PaginatedResponse<Item> = this.route.snapshot.data['paginatedResponse'];
 
-    if (paginatedResponse) {
-      this.currentPagination = PaginationResponseToPagination(paginatedResponse.pagination);
-      this.dataSource = paginatedResponse.results
-    }
+    this.matPaginatorConfig = paginatedResponse.createMatPaginatorConfig();
+    this.dataSource = paginatedResponse.content
   }
 
   onDeleteClick(item: Item): void {
@@ -63,13 +54,17 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
   }
 
   onPageChange(pageEvent: PageEvent): void {
-    this.currentPagination = pageEvent;
-    this.getAll(pageEvent);
+    this.matPaginatorConfig = new MatPaginatorConfig(pageEvent.pageIndex, pageEvent.pageSize, pageEvent.length);
+    this.getAll(this.matPaginatorConfig);
   }
 
   private delete(item: Item): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { title: "Delete item", content: "Are you sure you want to delete this item? This is a permanent action.", buttonText: "Delete" },
+      data: {
+        title: "Delete item",
+        content: "Are you sure you want to delete this item? This is a permanent action.",
+        buttonText: "Delete"
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -77,7 +72,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
         this.service
           .delete(item.id)
           .pipe(takeUntil(this.destroy$))
-          .subscribe(() => this.getAll(this.currentPagination));
+          .subscribe(() => this.getAll(this.matPaginatorConfig));
       }
     });
   }
@@ -86,13 +81,13 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
     this.dataSource = this.dataSource.filter(value => value.id !== item.id);
   }
 
-  private getAll(pagination: Pagination): void {
+  private getAll(pagination: MatPaginatorConfig): void {
     this.service
-      .getAll(PaginationToPaginationRequest(pagination))
+      .getAll(pagination.createPaginationParams())
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: PaginatedResponse<Item>) => {
-        this.currentPagination = PaginationResponseToPagination(response.pagination)
-        this.dataSource = response.results;
+        this.matPaginatorConfig = response.createMatPaginatorConfig();
+        this.dataSource = response.content;
       });
   }
 }

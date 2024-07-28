@@ -6,6 +6,6 @@
     <mat-card-subtitle>{{ details.description }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <app-ingredient-table [dataSource]="details.ingredients" [permanentDelete]="true"></app-ingredient-table>
+    <app-ingredient-table [dataSource]="details.ingredients" [permanentDelete]="true" [parentId]="details.id"></app-ingredient-table>
   </mat-card-content>
 </mat-card>

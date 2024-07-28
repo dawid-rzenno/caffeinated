@@ -14,6 +14,7 @@ export type DBItem = {
 
 export type GetAllRequestParams = Partial<PaginationParams> & {
   search?: string;
+  parentId?: number;
 }
 
 export type TableComponentAbstractService<Item extends DBItem> = {
@@ -25,6 +26,7 @@ export type TableComponentAbstractService<Item extends DBItem> = {
 export abstract class TableComponentAbstract<Item extends DBItem> extends ObservingComponentAbstract {
   @Input({ transform: (value: any[] | null) => value ?? []}) dataSource: Item[] = [];
   @Input() permanentDelete: boolean = false;
+  @Input() parentId: number | undefined;
 
   displayedColumns: string[] = ["id", "name", "description", "actions"];
   pageSizeOptions: number[] = MatPaginatorConfig.DefaultPageSizeOptions;
@@ -60,7 +62,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 
   onPageChange(pageEvent: PageEvent): void {
     this.matPaginatorConfig = new MatPaginatorConfig(pageEvent.pageIndex, pageEvent.pageSize, pageEvent.length);
-    this.getAll(this.matPaginatorConfig);
+    this.getAll(this.matPaginatorConfig.createPaginationParams());
   }
 
   private delete(item: Item): void {
@@ -77,7 +79,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
         this.service
           .delete(item.id)
           .pipe(takeUntil(this.destroy$))
-          .subscribe(() => this.getAll(this.matPaginatorConfig));
+          .subscribe(() => this.getAll(this.matPaginatorConfig.createPaginationParams()));
       }
     });
   }
@@ -86,9 +88,13 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
     this.dataSource = this.dataSource.filter(value => value.id !== item.id);
   }
 
-  private getAll(pagination: MatPaginatorConfig): void {
+  private getAll(params: GetAllRequestParams): void {
+    if (this.parentId) {
+      params.parentId = this.parentId;
+    }
+
     this.service
-      .getAll(pagination.createPaginationParams())
+      .getAll(params)
       .pipe(takeUntil(this.destroy$))
       .subscribe((response: PaginatedResponse<Item>) => {
         this.matPaginatorConfig = response.createMatPaginatorConfig();

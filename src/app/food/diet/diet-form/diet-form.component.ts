@@ -27,7 +27,7 @@ export type DietDetailsForm = DietForm & {
 }
 
 @Component({
-  selector: 'app-diet-form',
+  selector: 'cortado-diet-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,

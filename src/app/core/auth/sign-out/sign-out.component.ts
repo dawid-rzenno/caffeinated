@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth.service";
 
 @Component({
-  selector: 'app-sign-out',
+  selector: 'cortado-sign-out',
   templateUrl: './sign-out.component.html',
   styleUrls: ['./sign-out.component.scss']
 })

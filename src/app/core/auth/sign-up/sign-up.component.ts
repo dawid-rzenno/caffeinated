@@ -12,7 +12,7 @@ export type SignUpForm = {
 }
 
 @Component({
-  selector: 'app-sign-up',
+  selector: 'cortado-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })

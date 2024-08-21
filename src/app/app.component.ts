@@ -6,7 +6,7 @@ import { FooterComponent } from "./core/layout/footer/footer.component";
 import { AuthModule } from "./core/auth/auth.module";
 
 @Component({
-  selector: 'app-root',
+  selector: 'cortado-root',
   standalone: true,
   imports: [
     RouterOutlet,

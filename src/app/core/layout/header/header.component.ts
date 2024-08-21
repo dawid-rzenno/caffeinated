@@ -8,7 +8,7 @@ import { HeaderLink } from "./common/header-link";
 import { headerLinks } from "./common/header-links";
 
 @Component({
-  selector: 'app-header',
+  selector: 'cortado-header',
   standalone: true,
   imports: [
     RouterModule,

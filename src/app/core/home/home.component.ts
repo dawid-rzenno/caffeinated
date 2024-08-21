@@ -4,7 +4,7 @@ import { FontAwesomeIconLibraryModule } from "../libraries/font-awesome-icon-lib
 import { MatButtonModule } from "@angular/material/button";
 
 @Component({
-  selector: 'app-home',
+  selector: 'cortado-home',
   standalone: true,
   imports: [
     RouterModule,

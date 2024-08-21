@@ -33,7 +33,7 @@ export type ShoppingListDetailsForm = ShoppingListForm & {
 }
 
 @Component({
-  selector: 'app-shopping-list-form',
+  selector: 'cortado-shopping-list-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,

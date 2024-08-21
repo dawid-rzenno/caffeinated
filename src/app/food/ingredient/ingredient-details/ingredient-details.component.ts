@@ -5,7 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { MatCardModule } from "@angular/material/card";
 
 @Component({
-  selector: 'app-ingredient-details',
+  selector: 'cortado-ingredient-details',
   standalone: true,
   imports: [
     MatCardModule

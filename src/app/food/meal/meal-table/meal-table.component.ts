@@ -12,7 +12,7 @@ import { NgIf } from "@angular/common";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
 @Component({
-  selector: 'app-meal-table',
+  selector: 'cortado-meal-table',
   standalone: true,
   imports: [
     MatTableModule,

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'cortado-footer',
   templateUrl: './footer.component.html',
   standalone: true,
   styleUrls: ['./footer.component.scss']

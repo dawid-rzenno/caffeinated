@@ -38,7 +38,7 @@ export const createIngredientForm = (ingredient: Ingredient) => new FormGroup<In
 
 
 @Component({
-  selector: 'app-ingredient-form',
+  selector: 'cortado-ingredient-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,

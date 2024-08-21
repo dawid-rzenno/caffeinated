@@ -6,7 +6,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MealTableComponent } from "../../meal/meal-table/meal-table.component";
 
 @Component({
-  selector: 'app-diet-details',
+  selector: 'cortado-diet-details',
   standalone: true,
   imports: [
     MatCardModule,

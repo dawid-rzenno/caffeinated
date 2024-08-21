@@ -12,7 +12,7 @@ import {
 } from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-confirmation-dialog',
+  selector: 'cortado-confirmation-dialog',
   standalone: true,
   imports: [
     MatFormFieldModule,

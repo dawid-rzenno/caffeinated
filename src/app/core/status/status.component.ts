@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {InstantiatedStatus} from "./common/instantiated-status";
 
 @Component({
-  selector: 'app-status',
+  selector: 'cortado-status',
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.scss']
 })

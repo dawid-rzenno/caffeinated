@@ -35,7 +35,7 @@ export const createMealForm = (meal: Meal) => new FormGroup<MealForm>({
 })
 
 @Component({
-  selector: 'app-meal-form',
+  selector: 'cortado-meal-form',
   standalone: true,
   imports: [
     ReactiveFormsModule,

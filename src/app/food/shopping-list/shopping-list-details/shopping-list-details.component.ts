@@ -7,7 +7,7 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle }
 import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingredient-table.component";
 
 @Component({
-  selector: 'app-shopping-list-details',
+  selector: 'cortado-shopping-list-details',
   standalone: true,
   imports: [
     NgForOf,

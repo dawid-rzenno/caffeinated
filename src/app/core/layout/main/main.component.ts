@@ -3,7 +3,7 @@ import { RouterModule } from "@angular/router";
 import { StatusModule } from "../../status/status.module";
 
 @Component({
-  selector: 'app-main',
+  selector: 'cortado-main',
   standalone: true,
   imports: [RouterModule, StatusModule],
   templateUrl: './main.component.html',

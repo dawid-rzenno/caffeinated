@@ -97,5 +97,6 @@ export class MealFormComponent extends FormComponentAbstract<MealDetails> implem
 
   onOptionSelected(event: MatAutocompleteSelectedEvent): void {
     this.formGroup.controls.ingredients.push(createIngredientForm(event.option.value))
+    this.ingredientSearchFormControl.reset();
   }
 }

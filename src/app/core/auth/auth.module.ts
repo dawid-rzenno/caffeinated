@@ -11,7 +11,6 @@ import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {AuthService} from "./auth.service";
 import {AuthInterceptor} from "./auth.interceptor";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 

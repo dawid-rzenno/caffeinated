@@ -21,5 +21,5 @@ import { AuthModule } from "./core/auth/auth.module";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'fitness';
+  title = 'cortado';
 }

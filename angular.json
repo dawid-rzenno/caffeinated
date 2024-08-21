@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fitness": {
+    "cortado": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/fitness",
+            "outputPath": "dist/cortado",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -81,10 +81,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "fitness:build:production"
+              "buildTarget": "cortado:build:production"
             },
             "development": {
-              "buildTarget": "fitness:build:development"
+              "buildTarget": "cortado:build:development"
             }
           },
           "defaultConfiguration": "development"

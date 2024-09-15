@@ -1,13 +1,84 @@
-<div class="welcome-message">
-  <div class="welcome-message__content">
-    <div class="content__icon">
-      <fa-icon [icon]="['fas', 'hand-holding-dollar']"></fa-icon>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <mat-card class="h-100">
+        <mat-card-header>
+          <mat-card-title>
+            <h2>Transform your fitness journey with Cortado!</h2>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Cortado is your all-in-one solution for managing a healthy lifestyle.</p>
+          <p>
+            Cortado combines meal planning, grocery shopping and workout tracking into a seamless experience,
+            helping you stay organized and achieve your fitness goals.
+          </p>
+        </mat-card-content>
+      </mat-card>
     </div>
-    <h1 class="content__header">Welcome!</h1>
-    <p class="content__description">Cortado is an fitness app that helps you find your way to a healthy lifestyle.</p>
-    <button [routerLink]="['/food/diet/read/all']" color="primary" mat-raised-button type="button">
-      <fa-icon [icon]="['fas', 'plus']" size="xs"></fa-icon>
-      See diets
-    </button>
+    <div class="col-9">
+      <div class="row">
+        <div class="col-8 pb-4">
+          <mat-card class="h-100">
+            <mat-card-header>
+              <mat-card-title>
+                <h3>Meal Planner & Ingredient Tracker</h3>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Easily add meals, track ingredients, and compose personalized diets tailored to your nutritional needs.</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-4 pb-4">
+          <mat-card class="h-100">
+            <mat-card-header>
+              <mat-card-title>
+                <h3>Custom Diet Plans</h3>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Design diets by combining your favorite meals, ensuring balanced nutrition for your goals.</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-4">
+          <mat-card class="h-100">
+            <mat-card-header>
+              <mat-card-title>
+                <h3>Progress Tracker</h3>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Monitor your physical progress, track workouts, meals, and body measurements, helping you stay motivated and make adjustments as needed.</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-4">
+          <mat-card class="h-100">
+            <mat-card-header>
+              <mat-card-title>
+                <h3>Training Plan Creator</h3>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Build customized training routines that align with your fitness goals, whether you're working towards strength, endurance, or flexibility.</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="col-4">
+          <mat-card class="h-100">
+            <mat-card-header>
+              <mat-card-title>
+                <h3>Smart Shopping Lists</h3>
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>Generate shopping lists directly from your diet plans, simplifying grocery shopping with a detailed breakdown of all needed ingredients.</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

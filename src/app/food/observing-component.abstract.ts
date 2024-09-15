@@ -3,9 +3,9 @@ import { Subject } from "rxjs";
 
 @Directive()
 export abstract class ObservingComponentAbstract implements OnDestroy {
-  protected destroy$: Subject<void> = new Subject<void>();
+  protected readonly destroy$: Subject<void> = new Subject<void>();
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }

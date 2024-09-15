@@ -3,7 +3,6 @@ import { ActivatedRoute, RouterLink } from "@angular/router";
 import { MealDetails } from "../meal";
 import { DetailsComponentAbstract } from "../../details-component.abstract";
 import { MatCardModule } from "@angular/material/card";
-import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingredient-table.component";
 
 @Component({
   selector: 'cortado-meal-details',
@@ -11,7 +10,6 @@ import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingr
   imports: [
     MatCardModule,
     RouterLink,
-    IngredientTableComponent
   ],
   templateUrl: './meal-details.component.html',
   styleUrl: './meal-details.component.scss'

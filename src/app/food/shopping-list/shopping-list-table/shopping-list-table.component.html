@@ -14,7 +14,9 @@
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let item"> {{item.name}} </td>
+        <td mat-cell *matCellDef="let item">
+          <a [routerLink]="['/food/shopping-list/read', item.id]">{{item.name}}</a>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="description">
@@ -25,18 +27,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let item">
-          <button mat-button="primary" [routerLink]="['/food/shopping-list/read', item.id]">Read</button> &nbsp;
           <button mat-button="primary" [routerLink]="['/food/shopping-list/edit', item.id]">Edit</button> &nbsp;
-
-          <ng-container *ngIf="permanentDelete; then deleteButton; else removeButton"></ng-container>
-
-          <ng-template #removeButton>
-            <button mat-button (click)="onRemoveClick(item)">Remove</button>
-          </ng-template>
-
-          <ng-template #deleteButton>
-            <button mat-button (click)="onDeleteClick(item)">Delete</button>
-          </ng-template>
+          <button mat-button (click)="onDeleteClick(item)">Delete</button>
         </td>
       </ng-container>
 

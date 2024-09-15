@@ -4,7 +4,6 @@ import { NgForOf } from "@angular/common";
 import { ShoppingListDetails } from "../shopping-list";
 import { DetailsComponentAbstract } from "../../details-component.abstract";
 import { MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle } from "@angular/material/card";
-import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingredient-table.component";
 
 @Component({
   selector: 'cortado-shopping-list-details',
@@ -17,7 +16,6 @@ import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingr
     MatCardSubtitle,
     MatCardTitle,
     RouterModule,
-    IngredientTableComponent
   ],
   templateUrl: './shopping-list-details.component.html',
   styleUrl: './shopping-list-details.component.scss'

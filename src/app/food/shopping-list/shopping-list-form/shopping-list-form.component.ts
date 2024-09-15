@@ -19,8 +19,6 @@ import {
 import { map, Observable, startWith } from "rxjs";
 import { Ingredient } from "../../ingredient/ingredient";
 import { IngredientService } from "../../ingredient/ingredient.service";
-import { MealTableComponent } from "../../meal/meal-table/meal-table.component";
-import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingredient-table.component";
 
 export type ShoppingListForm = {
   id: FormControl<number | undefined>,
@@ -46,8 +44,6 @@ export type ShoppingListDetailsForm = ShoppingListForm & {
     MatAutocomplete,
     MatAutocompleteTrigger,
     MatOption,
-    MealTableComponent,
-    IngredientTableComponent
   ],
   templateUrl: './shopping-list-form.component.html',
   styleUrl: './shopping-list-form.component.scss'

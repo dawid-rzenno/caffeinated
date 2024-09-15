@@ -5,7 +5,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { ShoppingListService } from "../shopping-list.service";
 import { MatDialog } from "@angular/material/dialog";
 import { NgIf } from "@angular/common";
@@ -27,7 +27,7 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
   styleUrl: './shopping-list-table.component.scss'
 })
 export class ShoppingListTableComponent extends TableComponentAbstract<ShoppingList> {
-  constructor(service: ShoppingListService, route: ActivatedRoute, router: Router, dialog: MatDialog) {
-    super(service, route, router, dialog);
+  constructor(service: ShoppingListService, route: ActivatedRoute, dialog: MatDialog) {
+    super(service, route, dialog);
   }
 }

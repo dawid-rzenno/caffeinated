@@ -14,7 +14,6 @@ import { Ingredient } from "../../ingredient/ingredient";
 import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
 import { IngredientService } from "../../ingredient/ingredient.service";
 import { map, Observable, startWith } from "rxjs";
-import { IngredientTableComponent } from "../../ingredient/ingredient-table/ingredient-table.component";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 export type MealForm = {
@@ -46,7 +45,6 @@ export const createMealForm = (meal: Meal) => new FormGroup<MealForm>({
     MatButtonModule,
     MatAutocompleteModule,
     AsyncPipe,
-    IngredientTableComponent,
     MatButtonToggleModule
   ],
   templateUrl: './meal-form.component.html',

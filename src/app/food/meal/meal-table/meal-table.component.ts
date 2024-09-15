@@ -5,7 +5,7 @@ import { Meal } from "../meal";
 import { TableComponentAbstract } from "../../table-component-abstract.directive";
 import { MatCardModule } from "@angular/material/card";
 import { MatPaginatorModule } from "@angular/material/paginator";
-import { ActivatedRoute, Router, RouterModule } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { MealService } from "../meal.service";
 import { NgIf } from "@angular/common";
@@ -29,7 +29,7 @@ import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 export class MealTableComponent extends TableComponentAbstract<Meal> {
   override displayedColumns: string[] = ["id", "name", "description", "rating", "actions"];
 
-  constructor(service: MealService, route: ActivatedRoute, router: Router, dialog: MatDialog) {
-    super(service, route, router, dialog);
+  constructor(service: MealService, route: ActivatedRoute, dialog: MatDialog) {
+    super(service, route, dialog);
   }
 }

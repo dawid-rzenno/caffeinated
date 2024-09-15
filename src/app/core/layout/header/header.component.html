@@ -1,8 +1,10 @@
 <nav class="nav">
-  <a [routerLink]="['/']" class="link">
-    <fa-icon [icon]="['fas', 'heart-pulse']"></fa-icon>
-    &nbsp; Cortado
-  </a>
+  <h1 class="home-link">
+    <a [routerLink]="['/']" class="link">
+      <fa-icon [icon]="['fas', 'heart-pulse']"></fa-icon>
+      &nbsp; Cortado
+    </a>
+  </h1>
 
   <ng-container *ngFor="let item of Items">
     <a *ngIf="item.routerLink; else routerLinkMenu" [routerLink]="item.routerLink" class="link">

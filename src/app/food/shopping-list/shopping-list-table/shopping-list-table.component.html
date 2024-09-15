@@ -1,7 +1,8 @@
 <mat-card>
   <mat-card-header class="d-flex justify-content-between">
-    <mat-card-title><span>Shopping List</span></mat-card-title>
-    <a [routerLink]="['/food/shopping-list/create']"><fa-icon [icon]="['fas', 'plus']"></fa-icon></a>
+    <mat-card-title>
+      <h2><a [routerLink]="['/food/shopping-list/create']"><fa-icon [icon]="['fas', 'plus']"></fa-icon></a> Shopping List</h2>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <table mat-table [dataSource]="dataSource">

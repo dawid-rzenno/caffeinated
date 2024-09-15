@@ -1,18 +1,35 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>
-      Ingredient – {{details.name}}
+      <h2>Ingredient – {{details.name}}</h2>
     </mat-card-title>
-    <mat-card-subtitle>&nbsp;</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <ul>
-      <li>Category: {{ details.category_id }}</li>
-      <li>Price: {{ details.price }}</li>
-      <li>Calories: {{ details.calories }}</li>
-      <li>Proteins: {{ details.proteins }}</li>
-      <li>Carbohydrates: {{ details.carbohydrates }}</li>
-      <li>Fats: {{ details.fats }}</li>
-    </ul>
+    <mat-grid-list cols="6" rowHeight="300px">
+      <mat-grid-tile>
+        <mat-grid-tile-header>Calories</mat-grid-tile-header>
+        {{details.calories}} kcal
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header>Proteins</mat-grid-tile-header>
+        {{details.proteins}} g
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header>Carbohydrates</mat-grid-tile-header>
+        {{details.carbohydrates}} g
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header>Fats</mat-grid-tile-header>
+        {{details.fats}} g
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header>Price</mat-grid-tile-header>
+        {{details.price}} PLN
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-grid-tile-header>Category</mat-grid-tile-header>
+        {{details.category_id}}
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-card-content>
 </mat-card>

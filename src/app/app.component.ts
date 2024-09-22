@@ -4,6 +4,8 @@ import { HeaderComponent } from "./core/layout/header/header.component";
 import { MainComponent } from "./core/layout/main/main.component";
 import { FooterComponent } from "./core/layout/footer/footer.component";
 import { AuthModule } from "./core/auth/auth.module";
+import { BreadcrumbsComponent } from "./core/layout/breadcrumbs/breadcrumbs.component";
+import { SideNavComponent } from "./core/layout/side-nav/side-nav.component";
 
 @Component({
   selector: 'cortado-root',
@@ -14,7 +16,9 @@ import { AuthModule } from "./core/auth/auth.module";
     HeaderComponent,
     MainComponent,
     FooterComponent,
-    AuthModule
+    AuthModule,
+    BreadcrumbsComponent,
+    SideNavComponent
   ],
   providers: [],
   templateUrl: './app.component.html',

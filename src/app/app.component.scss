@@ -2,20 +2,28 @@
 
 :host {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   height: 100%;
   width: 100%;
 }
 
-.header {
-  height: $header-height;
+.breadcrumbs {
+  height: $app-bars-height;
+  width: 100%;
+}
+
+.side-nav {
+  height: $main-height;
+  flex-basis: 20%;
 }
 
 .main {
   height: $main-height;
   overflow-y: auto;
+  flex-basis: 80%;
 }
 
 .footer {
   height: $footer-height;
+  flex-basis: 100%;
 }

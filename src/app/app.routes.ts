@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from "./core/home/home.component";
 import { AuthModule } from "./core/auth/auth.module";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
+import { createTitle } from "./food/create-title.funtion";
 
 export const routes: Routes = [
   {
@@ -14,7 +15,8 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    title: createTitle('Home')
   },
   ...AuthModule.routes,
   {

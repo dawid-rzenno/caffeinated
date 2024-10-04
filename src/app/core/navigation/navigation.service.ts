@@ -10,53 +10,41 @@ import { NavigationNode, NavigationNodeToDirectUrlMapType } from "./navigation-n
 export class NavigationService {
 
   readonly navigationNodes: NavigationNode[] = [
-    new NavigationNode('Home', '',[
-      new NavigationNode('Foods', '/food', [
-        new NavigationNode('Diets', '/diet', [
-          new NavigationNode('List', '/read/all'),
-          new NavigationNode('Create', '/create'),
-        ]),
-        new NavigationNode('Meals', '/meal', [
-          new NavigationNode('List', '/read/all'),
-          new NavigationNode('Create', '/create'),
-        ]),
-        new NavigationNode('Beverages', '/beverage', [
-          new NavigationNode('List', '/read/all'),
-          new NavigationNode('Create', '/create'),
-        ]),
-        new NavigationNode('Ingredients', '/ingredient', [
-          new NavigationNode('List', '/read/all'),
-          new NavigationNode('Create', '/create'),
-        ]),
-      ]),
+    new NavigationNode('Dashboard', '/dashboard', true),
+    new NavigationNode('Diets', '/diet', false, [
+      new NavigationNode('See all diets', '/read/all'),
+      new NavigationNode('Add a diet', '/create'),
+    ]),
+    new NavigationNode('Meals', '/meal',  false,[
+      new NavigationNode('See all meals', '/read/all'),
+      new NavigationNode('Add a meal', '/create'),
+    ]),
+    new NavigationNode('Beverages', '/beverage', false, [
+      new NavigationNode('See all beverages', '/read/all'),
+      new NavigationNode('Add a beverage', '/create'),
+    ]),
+    new NavigationNode('Ingredients', '/ingredient', false, [
+      new NavigationNode('See all ingredients', '/read/all'),
+      new NavigationNode('Add an ingredient', '/create'),
     ]),
   ];
 
-  readonly pageNotFoundNavigationNode: NavigationNode = new NavigationNode('404 Page Not Found', '/page-not-found');
+  readonly pageNotFoundNavigationNode: NavigationNode = new NavigationNode(
+    '404 Page Not Found',
+    '/page-not-found',
+    false
+  );
 
   readonly navigationNodeUrls: NavigationNodeToDirectUrlMapType = NavigationNode.mapNavigationNodesToDirectUrls([
     ...this.navigationNodes,
     this.pageNotFoundNavigationNode
   ]);
 
-  readonly pageNotFoundBreadcrumb: Breadcrumb = {
-    label: '404 Page Not Found',
-    url: '/page-not-found',
-  };
-
-  readonly homeBreadcrumb: Breadcrumb = {
-    label: 'Home',
-    url: '/home'
-  };
-
   readonly breadcrumbs$: Observable<Breadcrumb[]> = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
     map(() => {
       const currentNavigationNode: NavigationNode = this.navigationNodeUrls[this.router.url];
-
-      return currentNavigationNode
-        ? [this.homeBreadcrumb, ...currentNavigationNode.breadcrumbs]
-        : [this.pageNotFoundBreadcrumb];
+      return currentNavigationNode ? currentNavigationNode.breadcrumbs : [this.pageNotFoundNavigationNode.breadcrumb];
     })
   );
 

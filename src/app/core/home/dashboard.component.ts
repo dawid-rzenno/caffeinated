@@ -6,7 +6,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatGridListModule } from "@angular/material/grid-list";
 
 @Component({
-  selector: 'cortado-home',
+  selector: 'cortado-dashboard',
   standalone: true,
   imports: [
     RouterModule,
@@ -15,8 +15,8 @@ import { MatGridListModule } from "@angular/material/grid-list";
     MatCardModule,
     MatGridListModule
   ],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class HomeComponent {
+export class DashboardComponent {
 }

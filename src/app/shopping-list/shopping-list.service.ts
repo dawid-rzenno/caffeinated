@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from "../../../environments/environment";
+import { environment } from "../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { map, Observable } from "rxjs";
 import { ShoppingList, ShoppingListDetails, ShoppingListRequest } from "./shopping-list";

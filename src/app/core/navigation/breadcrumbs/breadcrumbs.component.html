@@ -1,5 +1,17 @@
 <div class="breadcrumbs">
-  <ng-container *ngFor="let breadcrumb of breadcrumbs$ | async">
-    <a [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a> >
+  <ng-container *ngFor="let breadcrumb of (breadcrumbs$ | async); last as isLast">
+    <ng-template
+      [ngTemplateOutlet]="breadcrumb.navigate ? breadcrumbLabelWithLink : breadcrumbLabel"
+      [ngTemplateOutletContext]="{ breadcrumb }"
+    ></ng-template>
+    <span *ngIf="!isLast">&nbsp;<fa-icon [icon]="['fas','chevron-right']"></fa-icon>&nbsp;</span>
   </ng-container>
 </div>
+
+<ng-template #breadcrumbLabel let-breadcrumb="breadcrumb">
+  {{breadcrumb.label}}
+</ng-template>
+
+<ng-template #breadcrumbLabelWithLink let-breadcrumb="breadcrumb">
+  <a [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a>
+</ng-template>

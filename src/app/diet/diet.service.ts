@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GetAllRequestParams, TableComponentAbstractService } from "../table-component-abstract.directive";
 import { Diet, DietDetails, DietRequest } from "./diet";
 import { map, Observable } from "rxjs";
-import { environment } from "../../../environments/environment";
+import { environment } from "../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Meal } from "../meal/meal";
 import { PaginatedResponse } from "../paginated-response";

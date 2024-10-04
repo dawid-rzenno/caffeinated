@@ -4,18 +4,18 @@ export type NavigationNodeToDirectUrlMapType = Record<string, NavigationNode>;
 
 export class NavigationNode {
   readonly label: string;
-  readonly breadcrumb: Breadcrumb;
-  readonly url: string;
+  readonly urlSegment: string;
+  readonly navigate: boolean;
 
-  private _directUrl: string | null = null;
-  get directUrl(): string {
-    if (this._directUrl) {
-      return this._directUrl
+  private _url: string | null = null;
+  get url(): string {
+    if (this._url) {
+      return this._url
     }
 
-    return this._directUrl = this.parentRef
-      ? this.getAncestorsUrl(this.parentRef) + this.url
-      : this.url;
+    return this._url = this.parentRef
+      ? this.getAncestorsUrl(this.parentRef) + this.urlSegment
+      : this.urlSegment;
   };
 
   private _breadcrumbs: Breadcrumb[] | null = null;
@@ -29,20 +29,29 @@ export class NavigationNode {
       : [this.breadcrumb];
   }
 
-  private nodes: NavigationNode[] | null = null;
+  get breadcrumb(): Breadcrumb {
+    return { label: this.label, url: this.url, navigate: this.navigate }
+  }
+
+  readonly nodes: NavigationNode[] | null = null;
+
   private parentRef: NavigationNode | null = null;
 
-  constructor(label: string, url: string, children: NavigationNode[] = []) {
+  constructor(label: string, urlSegment: string, navigate: boolean = true, children: NavigationNode[] = []) {
+    this.nodes = children.map((child: NavigationNode) => {
+      child.parentRef = this;
+      return child;
+    });
+
     this.label = label;
-    this.breadcrumb = { label, url };
-    this.url = url;
-    this.nodes = children.map((child: NavigationNode) => child.parentRef = this);
+    this.urlSegment = urlSegment;
+    this.navigate = navigate;
   }
 
   protected getAncestorsUrl(parentNavigationNode: NavigationNode): string {
     return parentNavigationNode.parentRef
-      ? this.getAncestorsUrl(parentNavigationNode.parentRef) + parentNavigationNode.directUrl
-      : parentNavigationNode.directUrl;
+      ? this.getAncestorsUrl(parentNavigationNode.parentRef) + parentNavigationNode.urlSegment
+      : parentNavigationNode.urlSegment;
   }
 
   protected getAncestorsBreadcrumbs(parentNavigationNode: NavigationNode): Breadcrumb[] {
@@ -53,7 +62,7 @@ export class NavigationNode {
 
   static mapNavigationNodesToDirectUrls(children: NavigationNode[]): NavigationNodeToDirectUrlMapType {
     return children.reduce((urlMap, child) => {
-      urlMap[child.directUrl] = child;
+      urlMap[child.url] = child;
 
       if (child.nodes?.length) {
         return {...urlMap, ...this.mapNavigationNodesToDirectUrls(child.nodes)}

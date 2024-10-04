@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
-import { AsyncPipe, NgForOf } from "@angular/common";
+import { AsyncPipe, NgForOf, NgIf, NgTemplateOutlet } from "@angular/common";
 import { Observable } from "rxjs";
 import { NavigationService } from "../navigation.service";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
 export type Breadcrumb = {
   label: string,
-  url: string
+  url: string,
+  navigate: boolean
 };
 
 @Component({
@@ -15,7 +17,10 @@ export type Breadcrumb = {
   imports: [
     NgForOf,
     RouterLink,
-    AsyncPipe
+    AsyncPipe,
+    NgIf,
+    NgTemplateOutlet,
+    FaIconComponent
   ],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.scss'

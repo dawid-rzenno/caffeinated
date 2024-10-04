@@ -7,5 +7,12 @@
   height: 100%;
   width: 100%;
   background: #212121;
-  color: $primary-color;
+}
+
+*, a:link, a:visited, a:active {
+  color: white;
+}
+
+a:hover {
+  color: white;
 }

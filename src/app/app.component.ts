@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./core/layout/header/header.component";
 import { MainComponent } from "./core/layout/main/main.component";
 import { FooterComponent } from "./core/layout/footer/footer.component";
 import { AuthModule } from "./core/auth/auth.module";
-import { BreadcrumbsComponent } from "./core/layout/breadcrumbs/breadcrumbs.component";
-import { SideNavComponent } from "./core/layout/side-nav/side-nav.component";
+import { BreadcrumbsComponent } from "./core/navigation/breadcrumbs/breadcrumbs.component";
+import { SideNavComponent } from "./core/navigation/side-nav/side-nav.component";
 
 @Component({
   selector: 'cortado-root',
@@ -13,7 +12,6 @@ import { SideNavComponent } from "./core/layout/side-nav/side-nav.component";
   imports: [
     RouterOutlet,
     RouterLink,
-    HeaderComponent,
     MainComponent,
     FooterComponent,
     AuthModule,

@@ -18,6 +18,11 @@ export const routes: Routes = [
     component: HomeComponent,
     title: createTitle('Home')
   },
+  {
+    path: 'page-not-found',
+    component: NotFoundComponent,
+    title: createTitle('404 Page not found')
+  },
   ...AuthModule.routes,
   {
     path: '',
@@ -26,7 +31,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundComponent,
-    title: createTitle('404 Page not found')
-  },
+    redirectTo: 'page-not-found'
+  }
 ];

@@ -1,0 +1,5 @@
+<div class="breadcrumbs">
+  <ng-container *ngFor="let breadcrumb of breadcrumbs$ | async">
+    <a [routerLink]="breadcrumb.url">{{breadcrumb.label}}</a> >
+  </ng-container>
+</div>

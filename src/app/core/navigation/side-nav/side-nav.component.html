@@ -33,9 +33,9 @@
 </div>
 
 <ng-template #nodeLabel let-node="node">
-  {{node.label}}
+  <a class="node">{{node.label}}</a>
 </ng-template>
 
 <ng-template #nodeLabelWithLink let-node="node">
-  <a [routerLink]="node.url">{{node.label}}</a>
+  <a class="node" [routerLink]="node.url" routerLinkActive="node--link-active">{{node.label}}</a>
 </ng-template>

@@ -4,7 +4,7 @@
       [ngTemplateOutlet]="breadcrumb.navigate ? breadcrumbLabelWithLink : breadcrumbLabel"
       [ngTemplateOutletContext]="{ breadcrumb }"
     ></ng-template>
-    <span *ngIf="!isLast">&nbsp;<fa-icon [icon]="['fas','chevron-right']"></fa-icon>&nbsp;</span>
+    <span *ngIf="!isLast" class="mr-2 ml-2"><fa-icon [icon]="['fas','chevron-right']"></fa-icon></span>
   </ng-container>
 </div>
 

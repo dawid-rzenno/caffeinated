@@ -40,11 +40,30 @@ export class NavigationService {
     this.pageNotFoundNavigationNode
   ]);
 
+  createDetailsBreadcrumb(url: string): Breadcrumb {
+    return {
+      label: 'Details',
+      url: url,
+      navigate: false
+    }
+  }
+
   readonly breadcrumbs$: Observable<Breadcrumb[]> = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
     map(() => {
-      const currentNavigationNode: NavigationNode = this.navigationNodeUrls[this.router.url];
-      return currentNavigationNode ? currentNavigationNode.breadcrumbs : [this.pageNotFoundNavigationNode.breadcrumb];
+      let url: string = this.router.url;
+
+      if (url.includes('read')) {
+        const splitUrl: string[] = url.split('/');
+
+        return [...this.navigationNodeUrls[splitUrl.slice(0, -2).join('/')].breadcrumbs, this.createDetailsBreadcrumb(url)];
+      }
+
+      const currentNavigationNode: NavigationNode = this.navigationNodeUrls[url];
+
+      return currentNavigationNode
+        ? currentNavigationNode.breadcrumbs
+        : [this.pageNotFoundNavigationNode.breadcrumb];
     })
   );
 

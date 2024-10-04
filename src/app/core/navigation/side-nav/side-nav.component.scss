@@ -36,3 +36,12 @@
   background-color: $primary-link--hover;
   border-radius: 0.125rem;
 }
+
+.node {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.node--link-active {
+  background-color: $primary-link--hover;
+}

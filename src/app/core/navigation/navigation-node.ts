@@ -3,6 +3,8 @@ import { Breadcrumb } from "./breadcrumbs/breadcrumbs.component";
 export type NavigationNodeToDirectUrlMapType = Record<string, NavigationNode>;
 
 export class NavigationNode {
+  readonly id?: string;
+
   readonly label: string;
   readonly urlSegment: string;
   readonly navigate: boolean;

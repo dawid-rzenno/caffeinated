@@ -9,46 +9,56 @@ import { NavigationServiceInterface } from "../../core/navigation/navigation-ser
 export class NavigationService implements NavigationServiceInterface {
 
   readonly navigationNodes: NavigationNode[] = [
-    new NavigationNode('Kitchen', '', false, [
-      new NavigationNode('Diets', '/diet', false, [
+    new NavigationNode('Kitchen', '', [
+      new NavigationNode('Diets', '/diet', [
         new NavigationNode('See all diets', '/read/all'),
+        new NavigationNode('Details', '/read/details'),
         new NavigationNode('Add a diet', '/create'),
       ]),
-      new NavigationNode('Meals', '/meal',  false,[
+      new NavigationNode('Meals', '/meal',[
         new NavigationNode('See all meals', '/read/all'),
+        new NavigationNode('Details', '/read/details'),
         new NavigationNode('Add a meal', '/create'),
       ]),
-      new NavigationNode('Beverages', '/beverage', false, [
+      new NavigationNode('Beverages', '/beverage', [
         new NavigationNode('See all beverages', '/read/all'),
+        new NavigationNode('Details', '/read/details'),
         new NavigationNode('Add a beverage', '/create'),
       ]),
-      new NavigationNode('Ingredients', '/ingredient', false, [
+      new NavigationNode('Ingredients', '/ingredient', [
         new NavigationNode('See all ingredients', '/read/all'),
+        new NavigationNode('Details', '/read/details'),
         new NavigationNode('Add an ingredient', '/create'),
       ]),
     ]),
-    new NavigationNode('Gym', '', false, [
-      new NavigationNode('Workouts', '/workout', false, [
+    new NavigationNode('Gym', '', [
+      new NavigationNode('Workouts', '/workout', [
         new NavigationNode('See all workouts', '/read/all'),
+        new NavigationNode('Details', '/read/details'),
         new NavigationNode('Add a workout', '/create'),
       ]),
-      new NavigationNode('Exercises', '/exercise', false, [
+      new NavigationNode('Exercises', '/exercise', [
         new NavigationNode('See all exercises', '/read/all'),
+        new NavigationNode('Details', '/read/details'),
         new NavigationNode('Add an exercise', '/create'),
       ])
     ]),
-
   ];
 
   readonly pageNotFoundNavigationNode: NavigationNode = new NavigationNode(
     '404 Page Not Found',
-    '/page-not-found',
-    false
+    '/page-not-found'
+  );
+
+  readonly homeNavigationNode: NavigationNode = new NavigationNode(
+    'Home',
+    '/home'
   );
 
   readonly navigationNodeUrls: NavigationNodeToDirectUrlMapType = NavigationNode.mapNavigationNodesToDirectUrls([
     ...this.navigationNodes,
-    this.pageNotFoundNavigationNode
+    this.pageNotFoundNavigationNode,
+    this.homeNavigationNode,
   ]);
 
   readonly breadcrumbs$: Observable<Breadcrumb[]> = this.router.events.pipe(
@@ -56,12 +66,18 @@ export class NavigationService implements NavigationServiceInterface {
     map(() => {
       let url: string = this.router.url;
 
-      // ToDo: refactor it into something less ugly
-      if (!url.includes('read/all') && url.includes('read')) {
+      if (url.includes('details')) {
         const splitUrl: string[] = url.split('/');
 
-        return [...this.navigationNodeUrls[splitUrl.slice(0, -2).join('/')].breadcrumbs, this.createDetailsBreadcrumb(url)];
+        console.log(url, splitUrl.slice(0, -1), this.navigationNodeUrls)
+
+
+        return [
+          ...this.navigationNodeUrls[splitUrl.slice(0, -1).join('/')].breadcrumbs,
+          this.createDetailsBreadcrumb(url, splitUrl[splitUrl.length - 1])
+        ];
       }
+
 
       const currentNavigationNode: NavigationNode = this.navigationNodeUrls[url];
 
@@ -73,11 +89,10 @@ export class NavigationService implements NavigationServiceInterface {
 
   constructor(private router: Router) {}
 
-  protected createDetailsBreadcrumb(url: string): Breadcrumb {
+  protected createDetailsBreadcrumb(url: string, id: string): Breadcrumb {
     return {
-      label: 'Details',
-      url: url,
-      navigate: false
+      label: id,
+      url,
     }
   }
 }

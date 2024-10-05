@@ -9,13 +9,10 @@
   </div>
   <mat-tree #tree [dataSource]="dataSource" [childrenAccessor]="childrenAccessor" [trackBy]="trackBy" class="link-tree">
     <!-- This is the tree node template for leaf nodes -->
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [ngClass]="{'d-none': node.hideInTree}">
       <!-- use a disabled button to provide padding for tree leaf -->
       <button mat-icon-button disabled></button>
-      <ng-template
-        [ngTemplateOutlet]="node.navigate ? nodeLabelWithLink : nodeLabel"
-        [ngTemplateOutletContext]="{ node }"
-      ></ng-template>
+      <a class="node" [routerLink]="node.url" routerLinkActive="node--link-active">{{node.label}}</a>
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node
@@ -24,18 +21,7 @@
       [cdkTreeNodeTypeaheadLabel]="node.label"
     >
       <button mat-icon-button disabled></button>
-      <ng-template
-        [ngTemplateOutlet]="node.navigate ? nodeLabelWithLink : nodeLabel"
-        [ngTemplateOutletContext]="{ node }"
-      ></ng-template>
+      <a class="node">{{node.label}}</a>
     </mat-tree-node>
   </mat-tree>
 </div>
-
-<ng-template #nodeLabel let-node="node">
-  <a class="node">{{node.label}}</a>
-</ng-template>
-
-<ng-template #nodeLabelWithLink let-node="node">
-  <a class="node" [routerLink]="node.url" routerLinkActive="node--link-active">{{node.label}}</a>
-</ng-template>

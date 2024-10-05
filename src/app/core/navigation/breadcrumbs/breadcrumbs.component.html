@@ -1,7 +1,7 @@
 <div class="breadcrumbs">
   <ng-container *ngFor="let breadcrumb of (breadcrumbs$ | async); last as isLast">
     <ng-template
-      [ngTemplateOutlet]="breadcrumb.navigate ? breadcrumbLabelWithLink : breadcrumbLabel"
+      [ngTemplateOutlet]="isLast ? breadcrumbLabelWithLink : breadcrumbLabel"
       [ngTemplateOutletContext]="{ breadcrumb }"
     ></ng-template>
     <span *ngIf="!isLast" class="mr-2 ml-2"><fa-icon [icon]="['fas','chevron-right']"></fa-icon></span>

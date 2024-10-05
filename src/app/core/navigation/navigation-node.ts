@@ -7,7 +7,7 @@ export class NavigationNode {
 
   readonly label: string;
   readonly urlSegment: string;
-  readonly navigate: boolean;
+  readonly hideInTree: boolean;
 
   private _url: string | null = null;
   get url(): string {
@@ -32,14 +32,14 @@ export class NavigationNode {
   }
 
   get breadcrumb(): Breadcrumb {
-    return { label: this.label, url: this.url, navigate: this.navigate }
+    return { label: this.label, url: this.url }
   }
 
   readonly nodes: NavigationNode[] | null = null;
 
   private parentRef: NavigationNode | null = null;
 
-  constructor(label: string, urlSegment: string, navigate: boolean = true, children: NavigationNode[] = []) {
+  constructor(label: string, urlSegment: string, children: NavigationNode[] = []) {
     this.nodes = children.map((child: NavigationNode) => {
       child.parentRef = this;
       return child;
@@ -47,7 +47,7 @@ export class NavigationNode {
 
     this.label = label;
     this.urlSegment = urlSegment;
-    this.navigate = navigate;
+    this.hideInTree = urlSegment === '/read/details';
   }
 
   protected getAncestorsUrl(parentNavigationNode: NavigationNode): string {

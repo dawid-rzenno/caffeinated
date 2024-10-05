@@ -18,7 +18,7 @@ export const dietRoutes: Routes = [
         title: createTitle('Diets'),
       },
       {
-        path: ':id',
+        path: 'details/:id',
         component: DietDetailsComponent,
         resolve: {
           details: dietResolver

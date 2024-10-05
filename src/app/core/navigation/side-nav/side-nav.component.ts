@@ -2,7 +2,7 @@ import { AfterViewInit, Component, Inject, ViewChild } from '@angular/core';
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { RouterModule } from "@angular/router";
 import { NavigationNode } from "../navigation-node";
-import { JsonPipe, NgTemplateOutlet } from "@angular/common";
+import { JsonPipe, NgClass, NgStyle, NgTemplateOutlet } from "@angular/common";
 import { MatTree, MatTreeModule } from "@angular/material/tree";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
@@ -18,7 +18,9 @@ import { NAVIGATION_SERVICE_TOKEN, NavigationServiceInterface } from "../navigat
     MatTreeModule,
     MatIconModule,
     MatButtonModule,
-    NgTemplateOutlet
+    NgTemplateOutlet,
+    NgStyle,
+    NgClass
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss'

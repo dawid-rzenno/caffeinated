@@ -18,7 +18,7 @@ export const shoppingListRoutes: Routes = [
         title: createTitle('Shopping Lists'),
       },
       {
-        path: ':id',
+        path: 'details/:id',
         component: ShoppingListDetailsComponent,
         resolve: {
           details: shoppingListResolver

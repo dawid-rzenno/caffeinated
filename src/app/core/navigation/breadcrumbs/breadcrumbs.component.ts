@@ -8,7 +8,6 @@ import { NAVIGATION_SERVICE_TOKEN, NavigationServiceInterface } from "../navigat
 export type Breadcrumb = {
   label: string,
   url: string,
-  navigate: boolean
 };
 
 @Component({

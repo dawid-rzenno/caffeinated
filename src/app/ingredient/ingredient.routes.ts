@@ -18,7 +18,7 @@ export const ingredientRoutes: Route[] = [
         title: createTitle('Ingredients'),
       },
       {
-        path: ':id',
+        path: 'details/:id',
         component: IngredientDetailsComponent,
         resolve: {
           details: ingredientResolver

@@ -18,7 +18,7 @@ export const mealRoutes: Route[] = [
         title: createTitle('Meals'),
       },
       {
-        path: ':id',
+        path: 'details/:id',
         component: MealDetailsComponent,
         resolve: {
           details: mealResolver

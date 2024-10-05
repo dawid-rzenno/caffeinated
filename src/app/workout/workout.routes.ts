@@ -18,7 +18,7 @@ export const workoutRoutes: Route[] = [
         title: createTitle('Workouts'),
       },
       {
-        path: ':id',
+        path: 'details/:id',
         component: WorkoutDetailsComponent,
         resolve: {
           details: workoutResolver

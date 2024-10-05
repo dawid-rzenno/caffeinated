@@ -48,6 +48,10 @@ export abstract class FormComponentAbstract<ItemDetails extends Record<string, a
     this.service.create(this.formGroup.getRawValue()).subscribe()
   }
 
+  onSaveClick(): void {
+    this.onCreateClick();
+  }
+
   onResetClick(): void {
     this.formGroup.reset(this.defaultFormGroupValue)
   }

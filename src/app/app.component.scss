@@ -12,12 +12,16 @@
   width: 100%;
 }
 
+.main {
+  height: calc(100% - $app-bars-height);
+}
+
 .side-nav {
   height: $main-height;
   flex-basis: 20%;
 }
 
-.main {
+.main-container {
   height: $main-height;
   overflow-y: auto;
   flex-basis: 80%;

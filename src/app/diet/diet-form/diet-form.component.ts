@@ -6,7 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { DietService } from "../diet.service";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { AsyncPipe, NgForOf } from "@angular/common";
+import { AsyncPipe, NgForOf, NgTemplateOutlet } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { createMealForm, MealForm } from "../../meal/meal-form/meal-form.component";
@@ -38,7 +38,8 @@ export type DietDetailsForm = DietForm & {
     MatButtonModule,
     MatAutocompleteModule,
     AsyncPipe,
-    MealTableComponent
+    MealTableComponent,
+    NgTemplateOutlet
   ],
   templateUrl: './diet-form.component.html',
   styleUrl: './diet-form.component.scss'
@@ -87,4 +88,6 @@ export class DietFormComponent extends FormComponentAbstract<DietDetails> implem
   onOptionSelected(event: MatAutocompleteSelectedEvent): void {
     this.formGroup.controls.meals.push(createMealForm(event.option.value))
   }
+
+
 }

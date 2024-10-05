@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, ViewChild } from '@angular/core';
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { RouterModule } from "@angular/router";
 import { NavigationNode } from "../navigation-node";
@@ -6,7 +6,7 @@ import { JsonPipe, NgTemplateOutlet } from "@angular/common";
 import { MatTree, MatTreeModule } from "@angular/material/tree";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
-import { NavigationService } from "../../../shared/services/navigation.service";
+import { NAVIGATION_SERVICE_TOKEN, NavigationServiceInterface } from "../navigation-service.interface";
 
 @Component({
   selector: 'cortado-side-nav',
@@ -32,7 +32,7 @@ export class SideNavComponent implements AfterViewInit {
   readonly hasNode = (_: number, node: NavigationNode) => !!node.nodes && node.nodes.length > 0;
   readonly trackBy = (_: number, node: NavigationNode) => node.url;
 
-  constructor(private navigationService: NavigationService) {}
+  constructor(@Inject(NAVIGATION_SERVICE_TOKEN) private navigationService: NavigationServiceInterface) {}
 
   public ngAfterViewInit(): void {
     this.expandTree();

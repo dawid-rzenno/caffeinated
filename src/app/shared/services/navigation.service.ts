@@ -5,9 +5,7 @@ import { Breadcrumb } from "../../core/navigation/breadcrumbs/breadcrumbs.compon
 import { NavigationNode, NavigationNodeToDirectUrlMapType } from "../../core/navigation/navigation-node";
 import { NavigationServiceInterface } from "../../core/navigation/navigation-service.interface";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NavigationService implements NavigationServiceInterface {
 
   readonly navigationNodes: NavigationNode[] = [

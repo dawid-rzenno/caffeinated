@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { AsyncPipe, NgForOf, NgIf, NgTemplateOutlet } from "@angular/common";
 import { Observable } from "rxjs";
-import { NavigationService } from "../../../shared/services/navigation.service";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { NAVIGATION_SERVICE_TOKEN, NavigationServiceInterface } from "../navigation-service.interface";
 
 export type Breadcrumb = {
   label: string,
@@ -28,5 +28,5 @@ export type Breadcrumb = {
 export class BreadcrumbsComponent {
   public breadcrumbs$: Observable<Breadcrumb[]> = this.navigationService.breadcrumbs$;
 
-  constructor(private navigationService: NavigationService) {}
+  constructor(@Inject(NAVIGATION_SERVICE_TOKEN) private navigationService: NavigationServiceInterface) {}
 }

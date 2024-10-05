@@ -1,9 +1,9 @@
 import { Route } from "@angular/router";
-import { ingredientResolver } from "../ingredient/ingredient.resolver";
 import { createTitle } from "../shared/create-title.funtion";
 import { WorkoutFormComponent } from "./workout-form/workout-form.component";
 import { WorkoutDetailsComponent } from "./workout-details/workout-details.component";
 import { WorkoutTableComponent } from "./workout-table/workout-table.component";
+import { workoutResolver } from "./workout.resolver";
 
 export const workoutRoutes: Route[] = [
   {
@@ -13,7 +13,7 @@ export const workoutRoutes: Route[] = [
         path: 'all',
         component: WorkoutTableComponent,
         resolve: {
-          paginatedResponse: ingredientResolver
+          paginatedResponse: workoutResolver
         },
         title: createTitle('Workouts'),
       },
@@ -21,7 +21,7 @@ export const workoutRoutes: Route[] = [
         path: ':id',
         component: WorkoutDetailsComponent,
         resolve: {
-          details: ingredientResolver
+          details: workoutResolver
         },
         title: createTitle('Workout Details'),
       },
@@ -36,7 +36,7 @@ export const workoutRoutes: Route[] = [
     path: 'edit/:id',
     component: WorkoutFormComponent,
     resolve: {
-      details: ingredientResolver
+      details: workoutResolver
     },
     title: createTitle('Edit Workout'),
   }

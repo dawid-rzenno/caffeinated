@@ -40,20 +40,13 @@ export class NavigationService {
     this.pageNotFoundNavigationNode
   ]);
 
-  createDetailsBreadcrumb(url: string): Breadcrumb {
-    return {
-      label: 'Details',
-      url: url,
-      navigate: false
-    }
-  }
-
   readonly breadcrumbs$: Observable<Breadcrumb[]> = this.router.events.pipe(
     filter(event => event instanceof NavigationEnd),
     map(() => {
       let url: string = this.router.url;
 
-      if (url.includes('read')) {
+      // ToDo: refactor it into something less ugly
+      if (!url.includes('read/all') && url.includes('read')) {
         const splitUrl: string[] = url.split('/');
 
         return [...this.navigationNodeUrls[splitUrl.slice(0, -2).join('/')].breadcrumbs, this.createDetailsBreadcrumb(url)];
@@ -68,4 +61,12 @@ export class NavigationService {
   );
 
   constructor(private router: Router) {}
+
+  protected createDetailsBreadcrumb(url: string): Breadcrumb {
+    return {
+      label: 'Details',
+      url: url,
+      navigate: false
+    }
+  }
 }

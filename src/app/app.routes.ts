@@ -26,8 +26,8 @@ export const routes: Routes = [
     loadChildren: () => import('./shopping-list/shopping-list.module').then(m => m.ShoppingListModule)
   },
   {
-    path: 'training',
-    loadChildren: () => import('./training/training.module').then(m => m.TrainingModule)
+    path: 'workout',
+    loadChildren: () => import('./workout/workout.module').then(m => m.WorkoutModule)
   },
   ...AuthModule.routes,
   {

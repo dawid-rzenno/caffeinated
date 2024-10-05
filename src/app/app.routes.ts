@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from "./core/home/dashboard.component";
 import { AuthModule } from "./core/auth/auth.module";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
-import { createTitle } from "./create-title.funtion";
+import { createTitle } from "./shared/create-title.funtion";
 
 export const routes: Routes = [
   {

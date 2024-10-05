@@ -1,12 +1,12 @@
 import { Observable, takeUntil } from "rxjs";
 import { ActivatedRoute } from "@angular/router";
-import { ObservingComponentAbstract } from "./observing-component.abstract";
+import { ObservingComponentAbstract } from "./abstracts/observing-component.abstract";
 import { Directive } from "@angular/core";
 import { PageEvent } from "@angular/material/paginator";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { ConfirmationDialogComponent } from "./confirmation-dialog/confirmation-dialog.component";
-import { MatPaginatorConfig, PaginationParams } from "./mat-paginator-config";
-import { PaginatedResponse } from "./paginated-response";
+import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation-dialog.component";
+import { MatPaginatorConfig, PaginationParams } from "./models/mat-paginator-config";
+import { PaginatedResponse } from "./models/paginated-response";
 
 export type DBItem = {
   id?: number

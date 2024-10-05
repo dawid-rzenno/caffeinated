@@ -3,8 +3,8 @@ import { debounceTime, map, mergeMap, Observable, takeUntil } from "rxjs";
 import { FormControl, UntypedFormGroup } from "@angular/forms";
 import { Directive, OnInit } from "@angular/core";
 import { ObservingComponentAbstract } from "./observing-component.abstract";
-import { GetAllRequestParams } from "./table-component-abstract.directive";
-import { PaginatedResponse } from "./paginated-response";
+import { GetAllRequestParams } from "../table-component-abstract.directive";
+import { PaginatedResponse } from "../models/paginated-response";
 
 export type FormComponentAbstractService<ItemDetails> = {
   create(item: ItemDetails): Observable<ItemDetails>;

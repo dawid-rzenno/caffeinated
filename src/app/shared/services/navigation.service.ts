@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from "@angular/router";
 import { filter, map, Observable } from "rxjs";
-import { Breadcrumb } from "./breadcrumbs/breadcrumbs.component";
-import { NavigationNode, NavigationNodeToDirectUrlMapType } from "./navigation-node";
+import { Breadcrumb } from "../../core/navigation/breadcrumbs/breadcrumbs.component";
+import { NavigationNode, NavigationNodeToDirectUrlMapType } from "../../core/navigation/navigation-node";
+import { NavigationServiceInterface } from "../../core/navigation/navigation-service.interface";
 
 @Injectable({
   providedIn: 'root'
 })
-export class NavigationService {
+export class NavigationService implements NavigationServiceInterface {
 
   readonly navigationNodes: NavigationNode[] = [
     new NavigationNode('Dashboard', '/dashboard', true),

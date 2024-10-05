@@ -1,6 +1,6 @@
 import { Route } from "@angular/router";
 import { ingredientResolver } from "./ingredient.resolver";
-import { createTitle } from "../create-title.funtion";
+import { createTitle } from "../shared/create-title.funtion";
 import { IngredientDetailsComponent } from "./ingredient-details/ingredient-details.component";
 import { IngredientFormComponent } from "./ingredient-form/ingredient-form.component";
 import { IngredientTableComponent } from "./ingredient-table/ingredient-table.component";

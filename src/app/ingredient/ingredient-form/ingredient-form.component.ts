@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormComponentAbstract } from "../../form-component.abstract";
+import { FormComponentAbstract } from "../../shared/abstracts/form-component.abstract";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";

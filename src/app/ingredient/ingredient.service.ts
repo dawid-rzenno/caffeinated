@@ -3,8 +3,8 @@ import { map, Observable } from "rxjs";
 import { environment } from "../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Ingredient, IngredientDetails } from "./ingredient";
-import { GetAllRequestParams, TableComponentAbstractService } from "../table-component-abstract.directive";
-import { PaginatedResponse } from "../paginated-response";
+import { GetAllRequestParams, TableComponentAbstractService } from "../shared/table-component-abstract.directive";
+import { PaginatedResponse } from "../shared/models/paginated-response";
 
 @Injectable({
   providedIn: 'root'

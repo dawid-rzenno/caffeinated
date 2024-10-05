@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { MealDetails } from "../meal";
-import { DetailsComponentAbstract } from "../../details-component.abstract";
+import { DetailsComponentAbstract } from "../../shared/abstracts/details-component.abstract";
 import { MatCardModule } from "@angular/material/card";
 
 @Component({

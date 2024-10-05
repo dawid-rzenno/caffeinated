@@ -1,4 +1,4 @@
-import { DBItem } from "../table-component-abstract.directive";
+import { DBItem } from "../shared/table-component-abstract.directive";
 import { Meal } from "../meal/meal";
 
 export type Diet = DBItem & {

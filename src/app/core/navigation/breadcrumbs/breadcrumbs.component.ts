@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { AsyncPipe, NgForOf, NgIf, NgTemplateOutlet } from "@angular/common";
 import { Observable } from "rxjs";
-import { NavigationService } from "../navigation.service";
+import { NavigationService } from "../../../shared/services/navigation.service";
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 
 export type Breadcrumb = {

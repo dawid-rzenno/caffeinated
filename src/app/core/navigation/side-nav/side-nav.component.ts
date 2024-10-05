@@ -6,7 +6,7 @@ import { JsonPipe, NgTemplateOutlet } from "@angular/common";
 import { MatTree, MatTreeModule } from "@angular/material/tree";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
-import { NavigationService } from "../navigation.service";
+import { NavigationService } from "../../../shared/services/navigation.service";
 
 @Component({
   selector: 'cortado-side-nav',

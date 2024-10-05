@@ -3,9 +3,9 @@ import { environment } from "../../environments/environment";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { map, Observable } from "rxjs";
 import { ShoppingList, ShoppingListDetails, ShoppingListRequest } from "./shopping-list";
-import { GetAllRequestParams } from "../table-component-abstract.directive";
+import { GetAllRequestParams } from "../shared/table-component-abstract.directive";
 import { Ingredient } from "../ingredient/ingredient";
-import { PaginatedResponse } from "../paginated-response";
+import { PaginatedResponse } from "../shared/models/paginated-response";
 
 @Injectable({
   providedIn: 'root'

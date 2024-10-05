@@ -4,7 +4,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { ActivatedRoute, RouterModule } from "@angular/router";
-import { TableComponentAbstract } from "../../table-component-abstract.directive";
+import { TableComponentAbstract } from "../../shared/table-component-abstract.directive";
 import { Diet } from "../diet";
 import { DietService } from "../diet.service";
 import { MatDialog } from "@angular/material/dialog";

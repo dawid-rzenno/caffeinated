@@ -2,7 +2,7 @@ import { Route } from "@angular/router";
 import { MealFormComponent } from "./meal-form/meal-form.component";
 import { MealDetailsComponent } from "./meal-details/meal-details.component";
 import { mealResolver } from "./meal.resolver";
-import { createTitle } from "../create-title.funtion";
+import { createTitle } from "../shared/create-title.funtion";
 import { MealTableComponent } from "./meal-table/meal-table.component";
 
 export const mealRoutes: Route[] = [

@@ -10,22 +10,35 @@ export class NavigationService implements NavigationServiceInterface {
 
   readonly navigationNodes: NavigationNode[] = [
     new NavigationNode('Dashboard', '/dashboard', true),
-    new NavigationNode('Diets', '/diet', false, [
-      new NavigationNode('See all diets', '/read/all'),
-      new NavigationNode('Add a diet', '/create'),
+    new NavigationNode('Kitchen', '', false, [
+      new NavigationNode('Diets', '/diet', false, [
+        new NavigationNode('See all diets', '/read/all'),
+        new NavigationNode('Add a diet', '/create'),
+      ]),
+      new NavigationNode('Meals', '/meal',  false,[
+        new NavigationNode('See all meals', '/read/all'),
+        new NavigationNode('Add a meal', '/create'),
+      ]),
+      new NavigationNode('Beverages', '/beverage', false, [
+        new NavigationNode('See all beverages', '/read/all'),
+        new NavigationNode('Add a beverage', '/create'),
+      ]),
+      new NavigationNode('Ingredients', '/ingredient', false, [
+        new NavigationNode('See all ingredients', '/read/all'),
+        new NavigationNode('Add an ingredient', '/create'),
+      ]),
     ]),
-    new NavigationNode('Meals', '/meal',  false,[
-      new NavigationNode('See all meals', '/read/all'),
-      new NavigationNode('Add a meal', '/create'),
+    new NavigationNode('Gym', '', false, [
+      new NavigationNode('Workouts', '/workout', false, [
+        new NavigationNode('See all workouts', '/read/all'),
+        new NavigationNode('Add a workout', '/create'),
+      ]),
+      new NavigationNode('Exercises', '/exercise', false, [
+        new NavigationNode('See all exercises', '/read/all'),
+        new NavigationNode('Add an exercise', '/create'),
+      ])
     ]),
-    new NavigationNode('Beverages', '/beverage', false, [
-      new NavigationNode('See all beverages', '/read/all'),
-      new NavigationNode('Add a beverage', '/create'),
-    ]),
-    new NavigationNode('Ingredients', '/ingredient', false, [
-      new NavigationNode('See all ingredients', '/read/all'),
-      new NavigationNode('Add an ingredient', '/create'),
-    ]),
+
   ];
 
   readonly pageNotFoundNavigationNode: NavigationNode = new NavigationNode(

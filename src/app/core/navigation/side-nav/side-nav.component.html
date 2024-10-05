@@ -7,9 +7,20 @@
       </a>
     </h1>
   </div>
-  <mat-tree #tree [dataSource]="dataSource" [childrenAccessor]="childrenAccessor" [trackBy]="trackBy" class="link-tree">
+  <mat-tree
+    class="link-tree"
+    [dataSource]="dataSource"
+    [childrenAccessor]="childrenAccessor"
+    [trackBy]="trackBy"
+    #tree
+  >
     <!-- This is the tree node template for leaf nodes -->
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding [ngClass]="{'d-none': node.hideInTree}">
+    <mat-tree-node
+      *matTreeNodeDef="let node"
+      matTreeNodePadding
+      matTreeNodePaddingIndent="24px"
+      [ngClass]="{'d-none': node.hideInTree}"
+    >
       <!-- use a disabled button to provide padding for tree leaf -->
       <button mat-icon-button disabled></button>
       <a class="node" [routerLink]="node.url" routerLinkActive="node--link-active">{{node.label}}</a>
@@ -18,6 +29,7 @@
     <mat-tree-node
       *matTreeNodeDef="let node; when: hasNode"
       matTreeNodePadding
+      matTreeNodePaddingIndent="24px"
       [cdkTreeNodeTypeaheadLabel]="node.label"
     >
       <button mat-icon-button disabled></button>

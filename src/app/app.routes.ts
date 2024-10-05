@@ -18,6 +18,10 @@ export const routes: Routes = [
     loadChildren: () => import('./ingredient/ingredient.module').then(m => m.IngredientModule)
   },
   {
+    path: 'beverage',
+    loadChildren: () => import('./beverage/beverage.module').then(m => m.BeverageModule)
+  },
+  {
     path: 'shopping-list',
     loadChildren: () => import('./shopping-list/shopping-list.module').then(m => m.ShoppingListModule)
   },

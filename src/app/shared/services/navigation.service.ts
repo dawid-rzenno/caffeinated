@@ -9,7 +9,6 @@ import { NavigationServiceInterface } from "../../core/navigation/navigation-ser
 export class NavigationService implements NavigationServiceInterface {
 
   readonly navigationNodes: NavigationNode[] = [
-    new NavigationNode('Dashboard', '/dashboard', true),
     new NavigationNode('Kitchen', '', false, [
       new NavigationNode('Diets', '/diet', false, [
         new NavigationNode('See all diets', '/read/all'),

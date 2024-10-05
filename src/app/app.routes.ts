@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from "./core/home/dashboard.component";
+import { HomeComponent } from "./core/home/home.component";
 import { AuthModule } from "./core/auth/auth.module";
 import { NotFoundComponent } from "./core/not-found/not-found.component";
 import { createTitle } from "./shared/create-title.funtion";
@@ -29,17 +29,21 @@ export const routes: Routes = [
     path: 'workout',
     loadChildren: () => import('./workout/workout.module').then(m => m.WorkoutModule)
   },
+  {
+    path: 'exercise',
+    loadChildren: () => import('./exercise/exercise.module').then(m => m.ExerciseModule)
+  },
   ...AuthModule.routes,
   {
-    path: 'dashboard',
+    path: 'home',
     pathMatch: 'full',
-    component: DashboardComponent,
-    title: createTitle('Dashboard')
+    component: HomeComponent,
+    title: createTitle('Home')
   },
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: `/dashboard`
+    redirectTo: `/home`
   },
   {
     path: 'page-not-found',

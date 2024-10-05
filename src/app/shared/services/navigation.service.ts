@@ -13,34 +13,34 @@ export class NavigationService implements NavigationServiceInterface {
       new NavigationNode('Diets', '/diet', [
         new NavigationNode('See all diets', '/read/all'),
         new NavigationNode('Details', '/read/details'),
-        new NavigationNode('Add a diet', '/create'),
+        new NavigationNode('Create a diet', '/create'),
       ]),
       new NavigationNode('Meals', '/meal',[
         new NavigationNode('See all meals', '/read/all'),
         new NavigationNode('Details', '/read/details'),
-        new NavigationNode('Add a meal', '/create'),
+        new NavigationNode('Create a meal', '/create'),
       ]),
       new NavigationNode('Beverages', '/beverage', [
         new NavigationNode('See all beverages', '/read/all'),
         new NavigationNode('Details', '/read/details'),
-        new NavigationNode('Add a beverage', '/create'),
+        new NavigationNode('Create a beverage', '/create'),
       ]),
       new NavigationNode('Ingredients', '/ingredient', [
         new NavigationNode('See all ingredients', '/read/all'),
         new NavigationNode('Details', '/read/details'),
-        new NavigationNode('Add an ingredient', '/create'),
+        new NavigationNode('Create an ingredient', '/create'),
       ]),
     ]),
     new NavigationNode('Gym', '', [
       new NavigationNode('Workouts', '/workout', [
         new NavigationNode('See all workouts', '/read/all'),
         new NavigationNode('Details', '/read/details'),
-        new NavigationNode('Add a workout', '/create'),
+        new NavigationNode('Create a workout', '/create'),
       ]),
       new NavigationNode('Exercises', '/exercise', [
         new NavigationNode('See all exercises', '/read/all'),
         new NavigationNode('Details', '/read/details'),
-        new NavigationNode('Add an exercise', '/create'),
+        new NavigationNode('Create an exercise', '/create'),
       ])
     ]),
   ];

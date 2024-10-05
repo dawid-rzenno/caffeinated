@@ -3,10 +3,11 @@ import { inject } from "@angular/core";
 import { Meal, MealDetails } from "./meal";
 import { MealService } from "./meal.service";
 import { PaginatedResponse } from "../shared/models/paginated-response";
+import { MatPaginatorConfig } from "../shared/models/mat-paginator-config";
 
 export const mealResolver: ResolveFn<MealDetails | PaginatedResponse<Meal>> = (route: ActivatedRouteSnapshot) => {
 
   const id: string | null = route.paramMap.get('id');
 
-  return id ? inject(MealService).get(id) : inject(MealService).getAll()
+  return id ? inject(MealService).get(id) : inject(MealService).getAll(MatPaginatorConfig.defaultPaginationParams)
 };

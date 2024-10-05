@@ -40,6 +40,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 
     const paginatedResponse: PaginatedResponse<Item> = this.route.snapshot.data['paginatedResponse'];
     this.matPaginatorConfig = paginatedResponse.createMatPaginatorConfig();
+    console.log(this.matPaginatorConfig)
     this.dataSource = paginatedResponse.content;
   }
 
@@ -49,7 +50,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
 
   onPageChange(pageEvent: PageEvent): void {
     this.matPaginatorConfig = new MatPaginatorConfig(pageEvent.pageIndex, pageEvent.pageSize, pageEvent.length);
-    this.getAll(this.matPaginatorConfig.createPaginationParams());
+    this.getAll(this.matPaginatorConfig.paginationParams);
   }
 
   private delete(item: Item): void {
@@ -66,7 +67,7 @@ export abstract class TableComponentAbstract<Item extends DBItem> extends Observ
         this.service
           .delete(item.id)
           .pipe(takeUntil(this.destroy$))
-          .subscribe(() => this.getAll(this.matPaginatorConfig.createPaginationParams()));
+          .subscribe(() => this.getAll(this.matPaginatorConfig.paginationParams));
       }
     });
   }

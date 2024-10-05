@@ -1,9 +1,9 @@
 import { Route } from "@angular/router";
-import { ingredientResolver } from "../ingredient/ingredient.resolver";
 import { createTitle } from "../shared/create-title.funtion";
 import { BeverageTableComponent } from "./beverage-table/beverage-table.component";
 import { BeverageFormComponent } from "./beverage-form/beverage-form.component";
 import { BeverageDetailsComponent } from "./beverage-details/beverage-details.component";
+import { beverageResolver } from "./beverage.resolver";
 
 export const beverageRoutes: Route[] = [
   {
@@ -13,7 +13,7 @@ export const beverageRoutes: Route[] = [
         path: 'all',
         component: BeverageTableComponent,
         resolve: {
-          paginatedResponse: ingredientResolver
+          paginatedResponse: beverageResolver
         },
         title: createTitle('Beverages'),
       },
@@ -21,7 +21,7 @@ export const beverageRoutes: Route[] = [
         path: ':id',
         component: BeverageDetailsComponent,
         resolve: {
-          details: ingredientResolver
+          details: beverageResolver
         },
         title: createTitle('Beverage Details'),
       },
@@ -36,7 +36,7 @@ export const beverageRoutes: Route[] = [
     path: 'edit/:id',
     component: BeverageFormComponent,
     resolve: {
-      details: ingredientResolver
+      details: beverageResolver
     },
     title: createTitle('Edit Beverage'),
   }

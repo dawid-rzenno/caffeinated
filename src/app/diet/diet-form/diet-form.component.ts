@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormComponentAbstract } from "../../shared/abstracts/form-component.abstract";
 import { DietDetails } from "../diet";
 import { FormArray, FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
@@ -9,12 +9,15 @@ import { MatInputModule } from "@angular/material/input";
 import { AsyncPipe, NgForOf, NgTemplateOutlet } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
-import { createMealForm, MealForm } from "../../meal/meal-form/meal-form.component";
-import { map, Observable, startWith } from "rxjs";
 import { Meal } from "../../meal/meal";
-import { MealService } from "../../meal/meal.service";
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MealTableComponent } from "../../meal/meal-table/meal-table.component";
+import { DietMealControlComponent } from "../diet-meal-control/diet-meal-control.component";
+import { NumberToAdjectivePipe } from "../../shared/number-to-adjective.pipe";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import {
+  DietMealControlDialogComponent
+} from "../diet-meal-control/diet-meal-control-dialog/diet-meal-control-dialog.component";
 
 export type DietForm = {
   id: FormControl<number | undefined>,
@@ -23,7 +26,7 @@ export type DietForm = {
 }
 
 export type DietDetailsForm = DietForm & {
-  meals: FormArray<FormGroup<MealForm>>
+  meals: FormArray<FormControl<Meal>>
 }
 
 @Component({
@@ -39,23 +42,20 @@ export type DietDetailsForm = DietForm & {
     MatAutocompleteModule,
     AsyncPipe,
     MealTableComponent,
-    NgTemplateOutlet
+    NgTemplateOutlet,
+    DietMealControlComponent,
+    NumberToAdjectivePipe
   ],
   templateUrl: './diet-form.component.html',
   styleUrl: './diet-form.component.scss'
 })
 export class DietFormComponent extends FormComponentAbstract<DietDetails> implements OnInit {
-  readonly mealsFormArray: FormArray<FormGroup<MealForm>> = new FormArray<FormGroup<MealForm>>([]);
-  readonly mealTableDataSource$: Observable<Meal[]> =
-    this.mealsFormArray.valueChanges.pipe(
-      startWith(() => this.mealsFormArray.getRawValue()),
-      map(() => this.mealsFormArray.getRawValue())
-    ) as Observable<Meal[]>;
+  readonly mealsFormArray: FormArray<FormControl<Meal>> = new FormArray<FormControl<Meal>>([]);
 
   readonly formGroup: FormGroup<DietDetailsForm> = new FormGroup<DietDetailsForm>({
-    id: new FormControl<number | undefined>(undefined, {nonNullable: true}),
-    name: new FormControl<string>("", {nonNullable: true}),
-    description: new FormControl<string>("", {nonNullable: true}),
+    id: new FormControl<number | undefined>(undefined, { nonNullable: true }),
+    name: new FormControl<string>("", { nonNullable: true }),
+    description: new FormControl<string>("", { nonNullable: true }),
     meals: this.mealsFormArray
   });
 
@@ -66,13 +66,9 @@ export class DietFormComponent extends FormComponentAbstract<DietDetails> implem
     meals: []
   };
 
-  readonly mealSearchFormControl: FormControl<string> = new FormControl<string>('', {nonNullable: true})
-  readonly mealAutocompleteOptions$: Observable<Meal[]> = this.createAutocompleteOptions$(
-    this.mealSearchFormControl,
-    this.mealService
-  )
+  protected readonly matDialog: MatDialog = inject(MatDialog);
 
-  constructor(route: ActivatedRoute, service: DietService, private mealService: MealService) {
+  constructor(route: ActivatedRoute, service: DietService) {
     super(route, service);
   }
 
@@ -80,13 +76,25 @@ export class DietFormComponent extends FormComponentAbstract<DietDetails> implem
     super.ngOnInit();
     if (this.details) {
       for (let meal of this.details.meals) {
-        this.mealsFormArray.push(createMealForm(meal))
+        this.addNewMeal(meal);
       }
     }
   }
 
-  onOptionSelected(event: MatAutocompleteSelectedEvent): void {
-    this.formGroup.controls.meals.push(createMealForm(event.option.value))
+  openDialog(): void {
+    const dialogRef: MatDialogRef<DietMealControlDialogComponent, Meal> = this.matDialog.open(DietMealControlDialogComponent);
+
+    dialogRef.afterClosed().subscribe((meal: Meal | undefined) => {
+      if (meal) {
+        this.addNewMeal(meal);
+      }
+    });
+  }
+
+  protected addNewMeal(meal: Meal) {
+    this.mealsFormArray.push(
+      new FormControl<Meal>(meal) as FormControl<Meal>
+    )
   }
 
 
